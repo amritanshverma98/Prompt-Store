@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amex Prompt Store - Generative AI Learning Platform</title>
+    <style>
+:root {
+/* Primitive Color Tokens */
+--color-white: rgba(255, 255, 255, 1);
+--color-black: rgba(0, 0, 0, 1);
+--color-cream-50: rgba(252, 252, 249, 1);
+--color-cream-100: rgba(255, 255, 253, 1);
+--color-gray-200: rgba(245, 245, 245, 1);
+--color-gray-300: rgba(167, 169, 169, 1);
+--color-gray-400: rgba(119, 124, 124, 1);
+--color-slate-500: rgba(98, 108, 113, 1);
+--color-brown-600: rgba(94, 82, 64, 1);
+--color-charcoal-700: rgba(31, 33, 33, 1);
+--color-charcoal-800: rgba(38, 40, 40, 1);
+--color-slate-900: rgba(19, 52, 59, 1);
+--color-teal-300: rgba(50, 184, 198, 1);
+--color-teal-400: rgba(45, 166, 178, 1);
+--color-teal-500: rgba(33, 128, 141, 1);
+--color-teal-600: rgba(29, 116, 128, 1);
+--color-teal-700: rgba(26, 104, 115, 1);
+--color-teal-800: rgba(41, 150, 161, 1);
+--color-red-400: rgba(255, 84, 89, 1);
+--color-red-500: rgba(192, 21, 47, 1);
+--color-orange-400: rgba(230, 129, 97, 1);
+--color-orange-500: rgba(168, 75, 47, 1);
+
+--color-brown-600-rgb: 94, 82, 64;
+--color-teal-500-rgb: 33, 128, 141;
+--color-slate-900-rgb: 19, 52, 59;
+--color-slate-500-rgb: 98, 108, 113;
+--color-red-500-rgb: 192, 21, 47;
+--color-red-400-rgb: 255, 84, 89;
+--color-orange-500-rgb: 168, 75, 47;
+--color-orange-400-rgb: 230, 129, 97;
+
+--color-bg-1: rgba(59, 130, 246, 0.08);
+--color-bg-2: rgba(245, 158, 11, 0.08);
+--color-bg-3: rgba(34, 197, 94, 0.08);
+--color-bg-4: rgba(239, 68, 68, 0.08);
+--color-bg-5: rgba(147, 51, 234, 0.08);
+--color-bg-6: rgba(249, 115, 22, 0.08);
+--color-bg-7: rgba(236, 72, 153, 0.08);
+--color-bg-8: rgba(6, 182, 212, 0.08);
+
+--color-background: var(--color-cream-50);
+--color-surface: var(--color-cream-100);
+--color-text: var(--color-slate-900);
+--color-text-secondary: var(--color-slate-500);
+--color-primary: var(--color-teal-500);
+--color-primary-hover: var(--color-teal-600);
+--color-primary-active: var(--color-teal-700);
+--color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+--color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+--color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+--color-border: rgba(var(--color-brown-600-rgb), 0.2);
+--color-btn-primary-text: var(--color-cream-50);
+--color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+--color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+--color-error: var(--color-red-500);
+--color-success: var(--color-teal-500);
+--color-warning: var(--color-orange-500);
+--color-info: var(--color-slate-500);
+--color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+--color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+--focus-ring: 0 0 0 3px var(--color-focus-ring);
+--focus-outline: 2px solid var(--color-primary);
+
+--font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+--font-size-xs: 11px;
+--font-size-sm: 12px;
+--font-size-base: 14px;
+--font-size-md: 14px;
+--font-size-lg: 16px;
+--font-size-xl: 18px;
+--font-size-2xl: 20px;
+--font-size-3xl: 24px;
+--font-size-4xl: 30px;
+--font-weight-normal: 400;
+--font-weight-medium: 500;
+--font-weight-semibold: 550;
+--font-weight-bold: 600;
+--line-height-tight: 1.2;
+--line-height-normal: 1.5;
+--letter-spacing-tight: -0.01em;
+
+--space-0: 0;
+--space-1: 1px;
+--space-2: 2px;
+--space-4: 4px;
+--space-6: 6px;
+--space-8: 8px;
+--space-10: 10px;
+--space-12: 12px;
+--space-16: 16px;
+--space-20: 20px;
+--space-24: 24px;
+--space-32: 32px;
+
+--radius-sm: 6px;
+--radius-base: 8px;
+--radius-md: 10px;
+--radius-lg: 12px;
+--radius-full: 9999px;
+
+--shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+--shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+--duration-fast: 150ms;
+--duration-normal: 250ms;
+--ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+  --color-gray-400-rgb: 119, 124, 124;
+  --color-teal-300-rgb: 50, 184, 198;
+  --color-gray-300-rgb: 167, 169, 169;
+  --color-gray-200-rgb: 245, 245, 245;
+
+  --color-bg-1: rgba(29, 78, 216, 0.15);
+  --color-bg-2: rgba(180, 83, 9, 0.15);
+  --color-bg-3: rgba(21, 128, 61, 0.15);
+  --color-bg-4: rgba(185, 28, 28, 0.15);
+  --color-bg-5: rgba(107, 33, 168, 0.15);
+  --color-bg-6: rgba(194, 65, 12, 0.15);
+  --color-bg-7: rgba(190, 24, 93, 0.15);
+  --color-bg-8: rgba(8, 145, 178, 0.15);
+
+  --color-background: var(--color-charcoal-700);
+  --color-surface: var(--color-charcoal-800);
+  --color-text: var(--color-gray-200);
+  --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+  --color-primary: var(--color-teal-300);
+  --color-primary-hover: var(--color-teal-400);
+  --color-primary-active: var(--color-teal-800);
+  --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+  --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+  --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+  --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+  --color-error: var(--color-red-400);
+  --color-success: var(--color-teal-300);
+  --color-warning: var(--color-orange-400);
+  --color-info: var(--color-gray-300);
+  --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+  --color-btn-primary-text: var(--color-slate-900);
+  --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+  --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+  --color-success-rgb: var(--color-teal-300-rgb);
+  --color-error-rgb: var(--color-red-400-rgb);
+  --color-warning-rgb: var(--color-orange-400-rgb);
+  --color-info-rgb: var(--color-gray-300-rgb);
+}
+}
+
+@font-face {
+font-family: 'FKGroteskNeue';
+src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+font-family: var(--font-family-base);
+background-color: var(--color-background);
+color: var(--color-text);
+line-height: var(--line-height-normal);
+font-size: var(--font-size-base);
+-webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.app-container { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; background-color: var(--color-surface); border-right: 1px solid var(--color-border); padding: var(--space-24); position: fixed; height: 100vh; overflow-y: auto; z-index: 100; }
+.sidebar-logo { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-24); display: flex; align-items: center; gap: var(--space-8); }
+.sidebar-nav { list-style: none; }
+.sidebar-nav-item { margin-bottom: var(--space-8); }
+.sidebar-nav-link { display: flex; align-items: center; gap: var(--space-12); padding: var(--space-12); color: var(--color-text); text-decoration: none; border-radius: var(--radius-base); transition: all var(--duration-fast) var(--ease-standard); font-size: var(--font-size-md); font-weight: var(--font-weight-medium); }
+.sidebar-nav-link:hover { background-color: var(--color-secondary); color: var(--color-primary); }
+.sidebar-nav-link.active { background-color: var(--color-primary); color: var(--color-btn-primary-text); }
+.sidebar-nav-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+
+.main-content { flex: 1; margin-left: 280px; padding: var(--space-32); max-width: 1400px; }
+
+/* Header */
+.header { margin-bottom: var(--space-32); }
+.breadcrumb { display: flex; align-items: center; gap: var(--space-8); font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-16); }
+.breadcrumb-link { color: var(--color-text-secondary); text-decoration: none; }
+.breadcrumb-link:hover { color: var(--color-primary); }
+.page-title { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); color: var(--color-text); margin-bottom: var(--space-12); letter-spacing: var(--letter-spacing-tight); }
+.page-description { font-size: var(--font-size-lg); color: var(--color-text-secondary); line-height: 1.6; }
+
+/* Search */
+.search-container { margin-bottom: var(--space-32); position: relative; }
+.search-input { width: 100%; padding: var(--space-16) var(--space-16) var(--space-16) var(--space-32); font-size: var(--font-size-lg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background-color: var(--color-surface); color: var(--color-text); transition: all var(--duration-fast) var(--ease-standard); }
+.search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: var(--focus-ring); }
+.search-icon { position: absolute; left: var(--space-12); top: 50%; transform: translateY(-50%); color: var(--color-text-secondary); }
+
+/* Cards */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-24); margin-bottom: var(--space-32); }
+.card { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-24); transition: all var(--duration-normal) var(--ease-standard); cursor: pointer; }
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: var(--color-primary); }
+.card-icon { width: 48px; height: 48px; background-color: var(--color-bg-1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-16); font-size: var(--font-size-2xl); }
+.card-title { font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-8); }
+.card-description { font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.5; }
+
+/* Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-16); margin-bottom: var(--space-32); }
+.stat-card { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-20); text-align: center; }
+.stat-value { font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-4); }
+.stat-label { font-size: var(--font-size-sm); color: var(--color-text-secondary); font-weight: var(--font-weight-medium); }
+
+/* Accordion */
+.accordion { margin-bottom: var(--space-32); }
+.accordion-item { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); margin-bottom: var(--space-12); overflow: hidden; }
+.accordion-header { padding: var(--space-20); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all var(--duration-fast) var(--ease-standard); }
+.accordion-header:hover { background-color: var(--color-secondary); }
+.accordion-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-text); }
+.accordion-icon { width: 20px; height: 20px; transition: transform var(--duration-fast) var(--ease-standard); }
+.accordion-item.active .accordion-icon { transform: rotate(180deg); }
+.accordion-content { padding: 0 var(--space-20) var(--space-20) var(--space-20); display: none; }
+.accordion-item.active .accordion-content { display: block; }
+.accordion-description { font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-16); }
+.accordion-section { margin-bottom: var(--space-16); }
+.accordion-section h4 { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-8); }
+.accordion-section p { font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.5; margin-bottom: var(--space-8); }
+.accordion-section ul { list-style: none; padding-left: 0; }
+.accordion-section li { font-size: var(--font-size-base); color: var(--color-text-secondary); padding-left: var(--space-20); position: relative; margin-bottom: var(--space-6); }
+.accordion-section li:before { content: "•"; color: var(--color-primary); font-weight: bold; position: absolute; left: 0; }
+
+/* Technique Cards */
+.technique-card { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-24); margin-bottom: var(--space-20); }
+.technique-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-16); }
+.technique-title { font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-4); }
+.technique-badge { display: inline-block; padding: var(--space-4) var(--space-12); border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); background-color: var(--color-bg-2); color: var(--color-text); }
+.technique-description { font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-16); }
+.technique-section { margin-bottom: var(--space-16); }
+.technique-section h5 { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-8); }
+.code-block { background-color: var(--color-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-base); padding: var(--space-16); font-family: var(--font-family-mono); font-size: var(--font-size-sm); color: var(--color-text); overflow-x: auto; position: relative; margin-bottom: var(--space-12); }
+.copy-btn { position: absolute; top: var(--space-8); right: var(--space-8); background-color: var(--color-primary); color: var(--color-btn-primary-text); border: none; border-radius: var(--radius-sm); padding: var(--space-6) var(--space-12); font-size: var(--font-size-xs); cursor: pointer; transition: all var(--duration-fast) var(--ease-standard); }
+.copy-btn:hover { background-color: var(--color-primary-hover); }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
+.pros, .cons { padding: var(--space-16); border-radius: var(--radius-base); }
+.pros { background-color: var(--color-bg-3); }
+.cons { background-color: var(--color-bg-4); }
+.pros h6, .cons h6 { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-8); text-transform: uppercase; letter-spacing: 0.05em; }
+.pros ul, .cons ul { list-style: none; }
+.pros li, .cons li { font-size: var(--font-size-sm); margin-bottom: var(--space-4); padding-left: var(--space-20); position: relative; }
+.pros li:before { content: "✓"; position: absolute; left: 0; color: var(--color-success); font-weight: bold; }
+.cons li:before { content: "✗"; position: absolute; left: 0; color: var(--color-error); font-weight: bold; }
+
+/* Use Case Cards */
+.use-case-card { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-24); margin-bottom: var(--space-20); }
+.use-case-category { display: inline-block; padding: var(--space-4) var(--space-12); border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); background-color: var(--color-bg-5); color: var(--color-text); margin-bottom: var(--space-12); }
+.use-case-title { font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-12); }
+.use-case-context { background-color: var(--color-bg-1); padding: var(--space-16); border-radius: var(--radius-base); margin-bottom: var(--space-16); }
+.use-case-context-title { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-6); text-transform: uppercase; letter-spacing: 0.05em; }
+.use-case-context-text { font-size: var(--font-size-sm); color: var(--color-text-secondary); line-height: 1.5; }
+.example-section { margin-bottom: var(--space-16); }
+.example-title { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-8); }
+
+/* Best Practices */
+.practice-card { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-24); margin-bottom: var(--space-20); }
+.practice-header { display: flex; align-items: center; gap: var(--space-12); margin-bottom: var(--space-16); }
+.practice-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: var(--font-size-xl); }
+.practice-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-text); }
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); margin-bottom: var(--space-16); }
+.before, .after { padding: var(--space-16); border-radius: var(--radius-base); }
+.before { background-color: var(--color-bg-4); border: 1px solid rgba(var(--color-error-rgb), 0.2); }
+.after { background-color: var(--color-bg-3); border: 1px solid rgba(var(--color-success-rgb), 0.2); }
+.before h6, .after h6 { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-8); text-transform: uppercase; letter-spacing: 0.05em; }
+.before code, .after code { display: block; background-color: transparent; font-family: var(--font-family-mono); font-size: var(--font-size-sm); color: var(--color-text); padding: 0; white-space: pre-wrap; }
+
+/* FAQ */
+.faq-list { margin-bottom: var(--space-32); }
+.faq-item { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-20); margin-bottom: var(--space-16); }
+.faq-question { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-12); }
+.faq-answer { font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.6; }
+.faq-tag { display: inline-block; padding: var(--space-4) var(--space-8); border-radius: var(--radius-sm); font-size: var(--font-size-xs); background-color: var(--color-secondary); color: var(--color-text-secondary); margin-top: var(--space-8); }
+
+/* Filter Bar */
+.filter-bar { background-color: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-16); margin-bottom: var(--space-24); display: flex; gap: var(--space-12); flex-wrap: wrap; }
+.filter-btn { padding: var(--space-8) var(--space-16); border: 1px solid var(--color-border); border-radius: var(--radius-full); background-color: transparent; color: var(--color-text); font-size: var(--font-size-sm); cursor: pointer; transition: all var(--duration-fast) var(--ease-standard); }
+.filter-btn:hover { background-color: var(--color-secondary); border-color: var(--color-primary); }
+.filter-btn.active { background-color: var(--color-primary); color: var(--color-btn-primary-text); border-color: var(--color-primary); }
+
+/* Tabs */
+.tabs { display: flex; gap: var(--space-8); border-bottom: 1px solid var(--color-border); margin-bottom: var(--space-24); }
+.tab-btn { padding: var(--space-12) var(--space-20); border: none; background-color: transparent; color: var(--color-text-secondary); font-size: var(--font-size-base); font-weight: var(--font-weight-medium); cursor: pointer; border-bottom: 2px solid transparent; transition: all var(--duration-fast) var(--ease-standard); }
+.tab-btn:hover { color: var(--color-text); }
+.tab-btn.active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8); padding: var(--space-10) var(--space-20); border-radius: var(--radius-base); font-size: var(--font-size-base); font-weight: var(--font-weight-medium); cursor: pointer; transition: all var(--duration-normal) var(--ease-standard); border: none; text-decoration: none; }
+.btn-primary { background-color: var(--color-primary); color: var(--color-btn-primary-text); }
+.btn-primary:hover { background-color: var(--color-primary-hover); }
+.btn-secondary { background-color: var(--color-secondary); color: var(--color-text); }
+.btn-secondary:hover { background-color: var(--color-secondary-hover); }
+
+/* Utility */
+.hidden { display: none; }
+.mb-16 { margin-bottom: var(--space-16); }
+.mb-24 { margin-bottom: var(--space-24); }
+.mt-32 { margin-top: var(--space-32); }
+
+/* Back to top */
+.back-to-top { position: fixed; bottom: var(--space-32); right: var(--space-32); width: 48px; height: 48px; background-color: var(--color-primary); color: var(--color-btn-primary-text); border: none; border-radius: var(--radius-full); cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); transition: all var(--duration-normal) var(--ease-standard); z-index: 1000; }
+.back-to-top:hover { background-color: var(--color-primary-hover); transform: translateY(-2px); }
+.back-to-top.visible { display: flex; }
+
+/* Responsive */
+@media (max-width: 768px) {
+.sidebar { transform: translateX(-100%); transition: transform var(--duration-normal) var(--ease-standard); }
+.sidebar.mobile-open { transform: translateX(0); }
+.main-content { margin-left: 0; padding: var(--space-16); }
+.card-grid { grid-template-columns: 1fr; }
+.stats-grid { grid-template-columns: 1fr 1fr; }
+.pros-cons { grid-template-columns: 1fr; }
+.comparison { grid-template-columns: 1fr; }
+}
+
+/* Search Results */
+.search-results { position: absolute; top: 100%; left: 0; right: 0; background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); margin-top: var(--space-8); max-height: 400px; overflow-y: auto; box-shadow: var(--shadow-lg); z-index: 1000; }
+.search-result-item { padding: var(--space-16); border-bottom: 1px solid var(--color-card-border-inner); cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard); }
+.search-result-item:hover { background-color: var(--color-secondary); }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-title { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-4); }
+.search-result-description { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.search-result-category { font-size: var(--font-size-xs); color: var(--color-primary); margin-top: var(--space-4); }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <!-- Sidebar Navigation (UNCHANGED) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            Prompt Store
+        </div>
+        <nav>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link active" data-section="home">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="theory">
+                        <span class="sidebar-nav-icon">📚</span>
+                        <span>Theory</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="crash-course">
+                        <span class="sidebar-nav-icon">⚡</span>
+                        <span>Crash Course</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="techniques">
+                        <span class="sidebar-nav-icon">🔧</span>
+                        <span>Techniques</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="use-cases">
+                        <span class="sidebar-nav-icon">💼</span>
+                        <span>Use Cases</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="best-practices">
+                        <span class="sidebar-nav-icon">✅</span>
+                        <span>Best Practices</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="library">
+                        <span class="sidebar-nav-icon">📖</span>
+                        <span>Prompt Library</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="faq">
+                        <span class="sidebar-nav-icon">❓</span>
+                        <span>FAQ</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="resources">
+                        <span class="sidebar-nav-icon">🔗</span>
+                        <span>Resources</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section (UNCHANGED HEADER) -->
+        <section id="home" class="content-section">
+            <div class="header">
+                <div class="breadcrumb">
+                    <span>Home</span>
+                </div>
+                <h1 class="page-title">American Express Prompt Store</h1>
+                <p class="page-description">Your comprehensive guide to mastering generative AI prompt engineering. From foundational theory to advanced techniques, discover everything you need to create effective prompts for Amex use cases.</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for prompts, techniques, or use cases..." />
+                <div class="search-results hidden" id="searchResults"></div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Theory Modules</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">10+</div>
+                    <div class="stat-label">Advanced Techniques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">20+</div>
+                    <div class="stat-label">Use Cases</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Example Prompts</div>
+                </div>
+            </div>
+
+            <!-- Quick Navigation Cards -->
+            <div class="card-grid">
+                <div class="card" data-navigate="theory">
+                    <div class="card-icon" style="background-color: var(--color-bg-1);">📚</div>
+                    <h3 class="card-title">Theory</h3>
+                    <p class="card-description">Master the fundamentals of prompt engineering with deep foundational knowledge about LLMs and core principles.</p>
+                </div>
+                <div class="card" data-navigate="crash-course">
+                    <div class="card-icon" style="background-color: var(--color-bg-2);">⚡</div>
+                    <h3 class="card-title">Crash Course</h3>
+                    <p class="card-description">Get started quickly with essential concepts and practical exercises in just 5 minutes.</p>
+                </div>
+                <div class="card" data-navigate="techniques">
+                    <div class="card-icon" style="background-color: var(--color-bg-3);">🔧</div>
+                    <h3 class="card-title">Advanced Techniques</h3>
+                    <p class="card-description">Explore sophisticated prompting methods like Chain-of-Thought, Few-Shot, and Prompt Chaining.</p>
+                </div>
+                <div class="card" data-navigate="use-cases">
+                    <div class="card-icon" style="background-color: var(--color-bg-4);">💼</div>
+                    <h3 class="card-title">Use Cases</h3>
+                    <p class="card-description">Discover real Amex use cases across customer service, fraud detection, compliance, and more.</p>
+                </div>
+                <div class="card" data-navigate="best-practices">
+                    <div class="card-icon" style="background-color: var(--color-bg-5);">✅</div>
+                    <h3 class="card-title">Best Practices</h3>
+                    <p class="card-description">Learn what to do and what to avoid with comprehensive dos and don'ts examples.</p>
+                </div>
+                <div class="card" data-navigate="library">
+                    <div class="card-icon" style="background-color: var(--color-bg-6);">📖</div>
+                    <h3 class="card-title">Prompt Library</h3>
+                    <p class="card-description">Browse our extensive collection of ready-to-use prompts organized by category and difficulty.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theory Section -->
+        <section id="theory" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Theory</span>
+                </div>
+                <h1 class="page-title">Prompt Engineering Theory</h1>
+                <p class="page-description">Build a strong foundation in prompt engineering with comprehensive theoretical knowledge.</p>
+            </div>
+
+            <div class="accordion" id="theoryAccordion"></div>
+        </section>
+
+        <!-- Crash Course Section (UNCHANGED HEADER) -->
+        <section id="crash-course" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Crash Course</span>
+                </div>
+                <h1 class="page-title">Crash Course in Prompt Engineering</h1>
+                <p class="page-description">Master the essentials in minutes with this quick-start guide.</p>
+            </div>
+
+            <div class="accordion">
+                <!-- (UNCHANGED ACCORDION ITEMS FROM YOUR FILE) -->
+                <!-- kept identical; content remains, already practical and concise -->
+                <!-- 5-Minute Intro, 3 Golden Rules, First Prompt, Patterns, Practice Exercise -->
+                <!-- START of original items -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">5-Minute Introduction</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="accordion-description">Prompt engineering is about giving AI clear instructions to get the results you want. Think of it like managing a highly capable but literal assistant.</p>
+
+                        <div class="accordion-section">
+                            <h4>Essential Concepts:</h4>
+                            <ul>
+                                <li><strong>Clarity is King:</strong> Be explicit about what you want</li>
+                                <li><strong>Context Matters:</strong> Give the AI background information</li>
+                                <li><strong>Examples Help:</strong> Show what you're looking for</li>
+                                <li><strong>Format Matters:</strong> Specify how you want the output</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">The 3 Golden Rules</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>1. Clarity</h4>
+                            <p>Be specific and unambiguous. Replace "analyze this transaction" with "identify fraud risk factors including geographic anomalies, amount deviations, and merchant category risks."</p>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>2. Context</h4>
+                            <p>Provide relevant background. For Amex customer service, include: customer tier, account history, previous interactions, and specific product details.</p>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>3. Constraints</h4>
+                            <p>Define boundaries and format. Specify response length, output structure (JSON, bullets, narrative), tone, and any compliance requirements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Building Your First Prompt</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>Step-by-Step Walkthrough:</h4>
+                            <p><strong>Step 1: Define the Task</strong><br>"I need to classify customer sentiment from feedback."</p>
+                            <p><strong>Step 2: Add Context</strong><br>"You are an Amex customer service analyst reviewing feedback about credit card rewards programs."</p>
+                            <p><strong>Step 3: Specify Output</strong><br>"Classify as POSITIVE, NEGATIVE, or NEUTRAL and provide the main reason."</p>
+                            <p><strong>Step 4: Add Examples (if needed)</strong><br>Show 2-3 examples of the classification format you want.</p>
+                            <p><strong>Final Prompt:</strong></p>
+                            <div class="code-block">
+You are an Amex customer service analyst. Classify the sentiment of customer feedback about our rewards programs as POSITIVE, NEGATIVE, or NEUTRAL.
+
+Feedback: {CUSTOMER_FEEDBACK}
+
+Provide:
+1. Classification: [POSITIVE/NEGATIVE/NEUTRAL]
+2. Main reason: [brief explanation]
+3. Confidence: [High/Medium/Low]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Common Prompt Patterns</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>1. Role-Based Pattern</h4>
+                            <p>"You are a [ROLE] with [EXPERTISE]. Your task is to [ACTION]."</p>
+                            <p>Example: "You are an experienced fraud analyst with 10 years at Amex. Analyze this transaction for fraud indicators."</p>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>2. Template-Based Pattern</h4>
+                            <p>Provide a structured template with placeholders.</p>
+                            <div class="code-block">
+Analyze: {INPUT}
+Format:
+- Risk Level: [HIGH/MEDIUM/LOW]
+- Key Indicators: [list]
+- Recommendation: [action]
+                            </div>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>3. Step-by-Step Pattern</h4>
+                            <p>Break complex tasks into ordered steps.</p>
+                            <p>"First, identify the transaction type. Second, check against historical patterns. Third, calculate risk score. Finally, make a recommendation."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Practice Exercise</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>Challenge: Create a Customer Service Response Prompt</h4>
+                            <p><strong>Scenario:</strong> A customer complains about being charged an annual fee after canceling their card.</p>
+                            <p><strong>Your Task:</strong> Write a prompt that generates an empathetic, professional response that:</p>
+                            <ul>
+                                <li>Acknowledges the customer's frustration</li>
+                                <li>Explains the cancellation timing policy</li>
+                                <li>Offers a solution or escalation path</li>
+                                <li>Maintains Amex's brand voice</li>
+                            </ul>
+
+                            <h4>Try This:</h4>
+                            <div class="code-block">
+You are an Amex senior customer service representative known for empathy and problem-solving.
+
+Customer Issue: {COMPLAINT}
+
+Generate a response that:
+1. Acknowledges their frustration specifically
+2. Explains relevant policy in plain language
+3. Offers concrete next steps
+4. Ends with reassurance
+
+Tone: Professional yet warm
+Length: 100-150 words
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END of original items -->
+            </div>
+        </section>
+
+        <!-- Techniques Section -->
+        <section id="techniques" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Techniques</span>
+                </div>
+                <h1 class="page-title">Advanced Prompting Techniques</h1>
+                <p class="page-description">Master sophisticated methods to unlock the full potential of AI models.</p>
+            </div>
+
+            <div id="techniquesList"></div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section id="use-cases" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Use Cases</span>
+                </div>
+                <h1 class="page-title">Amex Use Cases</h1>
+                <p class="page-description">Explore real-world applications of prompt engineering across American Express business domains.</p>
+            </div>
+
+            <!-- Tabs for Categories -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="all">All Use Cases</button>
+                <button class="tab-btn" data-tab="customer-service">Customer Service</button>
+                <button class="tab-btn" data-tab="fraud">Fraud</button>
+                <button class="tab-btn" data-tab="marketing">Marketing</button>
+                <button class="tab-btn" data-tab="analytics">Analytics</button>
+                <button class="tab-btn" data-tab="compliance">Compliance</button>
+            </div>
+
+            <div id="useCasesList"></div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section id="best-practices" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Best Practices</span>
+                </div>
+                <h1 class="page-title">Best Practices &amp; Guidelines</h1>
+                <p class="page-description">Learn the dos and don'ts of effective prompt engineering with real Amex examples.</p>
+            </div>
+
+            <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-24); color: var(--color-text);">✅ DO: Follow These Best Practices</h2>
+            <div id="bestPracticesDo"></div>
+
+            <h2 style="font-size: var(--font-size-2xl); margin-top: var(--space-32); margin-bottom: var(--space-24); color: var(--color-text);">❌ DON'T: Avoid These Common Mistakes</h2>
+            <div id="bestPracticesDont"></div>
+
+            <h2 style="font-size: var(--font-size-2xl); margin-top: var(--space-32); margin-bottom: var(--space-24); color: var(--color-text);">⚠️ Common Mistakes to Avoid</h2>
+            <div id="commonMistakes"></div>
+        </section>
+
+        <!-- Library Section -->
+        <section id="library" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Prompt Library</span>
+                </div>
+                <h1 class="page-title">Prompt Library</h1>
+                <p class="page-description">Browse and search our comprehensive collection of ready-to-use prompts.</p>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                <button class="filter-btn" data-filter="advanced">Advanced</button>
+                <button class="filter-btn" data-filter="customer-service">Customer Service</button>
+                <button class="filter-btn" data-filter="fraud">Fraud</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+            </div>
+
+            <div id="promptLibraryList"></div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>FAQ</span>
+                </div>
+                <h1 class="page-title">Frequently Asked Questions</h1>
+                <p class="page-description">Quick answers to common questions about prompt engineering.</p>
+            </div>
+
+            <div class="faq-list" id="faqList"></div>
+        </section>
+
+        <!-- Resources Section (UNCHANGED) -->
+        <section id="resources" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Resources</span>
+                </div>
+                <h1 class="page-title">Resources &amp; References</h1>
+                <p class="page-description">External resources, research papers, and additional learning materials.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-1);">📄</div>
+                    <h3 class="card-title">OpenAI Prompt Engineering Guide</h3>
+                    <p class="card-description">Official documentation and best practices from OpenAI.</p>
+                    <a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Visit Resource</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-2);">🔒</div>
+                    <h3 class="card-title">Prompt Injection Prevention</h3>
+                    <p class="card-description">Security best practices for protecting against prompt injection attacks.</p>
+                    <a href="https://owasp.org/www-community/attacks/Prompt_Injection" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Learn More</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-3);">⚙️</div>
+                    <h3 class="card-title">Structured Outputs Guide</h3>
+                    <p class="card-description">Technical reference for generating consistent, parseable outputs.</p>
+                    <a href="https://platform.openai.com/docs/guides/structured-outputs" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Read Guide</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-4);">📊</div>
+                    <h3 class="card-title">Chain-of-Thought Research</h3>
+                    <p class="card-description">Academic papers on advanced reasoning techniques.</p>
+                    <a href="https://arxiv.org/abs/2201.11903" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">View Paper</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-5);">🏢</div>
+                    <h3 class="card-title">Amex AI Guidelines</h3>
+                    <p class="card-description">Internal guidelines for responsible AI usage at American Express.</p>
+                    <button class="btn btn-secondary" style="margin-top: var(--space-16);">Internal Access Required</button>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-6);">📚</div>
+                    <h3 class="card-title">Prompt Engineering Community</h3>
+                    <p class="card-description">Join discussions and share learnings with fellow practitioners.</p>
+                    <a href="https://www.promptingguide.ai/" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Join Community</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop">↑</button>
+
+<script>
+// -----------------------------
+// DATA (EXPANDED CONTENT ONLY)
+// -----------------------------
+
+const theoryModules = [
+  {
+    id: 1,
+    title: "What is Prompt Engineering?",
+    description: "Understanding the fundamentals of guiding AI models",
+    content: [
+      {
+        heading: "Definition",
+        text: "Prompt engineering is the practice of designing and refining specific text inputs (prompts) to guide large language models (LLMs) in generating desired, accurate, and relevant outputs."
+      },
+      {
+        heading: "Why It Matters at Amex",
+        text: "In financial services, precision is critical. Well-crafted prompts enable Amex to automate customer interactions, detect fraud, analyze risk, and ensure regulatory compliance with minimal errors."
+      },
+      {
+        heading: "Key Benefits",
+        points: [
+          "Faster decision-making without model retraining",
+          "Cost-effective automation of repetitive tasks",
+          "Consistent, reliable outputs",
+          "Better customer experiences",
+          "Reduced operational risk"
+        ]
+      },
+      {
+        heading: "Prompt Structure (Pointwise)",
+        points: [
+          "Role: who the model should be (e.g., \"You are an Amex fraud analyst\")",
+          "Task: what to do (e.g., \"assess risk of transaction\")",
+          "Context: background (e.g., customer tier, history, merchant info)",
+          "Constraints: tone, output length, compliance caveats",
+          "Format: explicit schema (bullets/JSON/table) and fields",
+          "Examples: 1–3 short, diverse demonstrations (optional but powerful)"
+        ]
+      },
+      {
+        heading: "Safety & Compliance (Essentials)",
+        points: [
+          "Never include PII or PAN data; use masked placeholders like [MASKED_CARD]",
+          "Do not fabricate legal or regulatory guidance; clearly mark non-legal content",
+          "Prefer retrieval-grounded prompts with citations to internal policy",
+          "Add guardrails: refuse unsafe requests and escalate when uncertain"
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "How Large Language Models Work",
+    description: "Understanding LLM mechanics for better prompt design",
+    content: [
+      { heading: "Context Windows", text: "LLMs process input within a fixed context window (e.g., 4,000–100,000 tokens). Long documents may be truncated; summarize or chunk." },
+      { heading: "Temperature & Sampling", text: "Temperature controls randomness: 0.0 = deterministic, 1.0+ = creative. Lower values for finance; higher for brainstorming." },
+      { heading: "Tokenization", text: "Text is broken into tokens (~4 chars each). Be concise, prefer compact schemas, and reuse consistent terminology." },
+      {
+        heading: "Determinism & Evaluation",
+        points: [
+          "Fix temperature and system header for repeatability",
+          "Use few-shot exemplars to stabilize tone and format",
+          "Evaluate with a rubric: correctness, completeness, safety, format adherence"
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Core Principles",
+    description: "The foundational rules of effective prompting",
+    content: [
+      { heading: "1. Clarity", text: "Use unambiguous language. Avoid metaphors, slang, and vague terms." },
+      { heading: "2. Context", text: "Provide sufficient background information so the model understands the problem." },
+      { heading: "3. Specificity", text: "Be precise about what you want. 'Analyze transaction' is vague; 'Flag transactions >$5000 from new geographic locations' is specific." },
+      { heading: "4. Iteration", text: "Prompts are rarely perfect on the first try. Test, refine, and improve." },
+      {
+        heading: "Format First",
+        text: "Lead with the required format (JSON / bullets / table). Models adhere better when the target is shown up front."
+      },
+      {
+        heading: "Grounding",
+        text: "When accuracy matters, ground the model in source text or policy snippets using clear delimiters."
+      }
+    ]
+  }
+];
+
+// TECHNIQUES (Original 8 + Many New)
+const techniques = [
+  // --------- Originals (kept) ----------
+  {
+    id: 1,
+    name: "Zero-Shot Prompting",
+    category: "Fundamental",
+    difficulty: "Beginner",
+    description: "Asking the model to perform a task without providing examples",
+    when_to_use: "Simple, well-defined tasks where the model has sufficient training data",
+    example_prompt: "Classify the following credit card transaction as FRAUD or LEGITIMATE: Amount: $2500, Location: Singapore, Customer History: US-based, Last transaction: 2 hours ago in New York",
+    expected_output: "FRAUD - Rapid geographic change (New York to Singapore in 2 hours), unusually high amount, new location for customer profile",
+    pros: ["Fast to implement", "No need for examples", "Works well for straightforward tasks"],
+    cons: ["Less accurate for complex or nuanced tasks", "May produce generic responses"],
+    amex_example: "Categorize this customer feedback into: POSITIVE, NEGATIVE, or NEUTRAL"
+  },
+  {
+    id: 2,
+    name: "Few-Shot Prompting",
+    category: "Intermediate",
+    difficulty: "Intermediate",
+    description: "Providing examples to help the model understand the task pattern",
+    when_to_use: "Complex tasks, specific output formats, nuanced decision-making",
+    example_prompt: `Classify the sentiment of customer reviews about Amex card services. Here are examples:
+
+Example 1: 'Love my Amex card! Great rewards and customer service.' → POSITIVE
+
+Example 2: 'Terrible experience. High fees and no support.' → NEGATIVE
+
+Example 3: 'Card works fine, nothing special.' → NEUTRAL
+
+Now classify: 'The card is okay but the annual fee is hard to justify.'`,
+    expected_output: "NEUTRAL (customer acknowledges functionality but has reservations about value)",
+    pros: ["Significantly improves accuracy", "Guides model toward specific format/style", "Reduces hallucinations"],
+    cons: ["Requires crafting good examples", "Slightly increases prompt length"],
+    amex_example: "Credit risk assessment classification with examples"
+  },
+  {
+    id: 3,
+    name: "Chain-of-Thought (CoT) Prompting",
+    category: "Advanced",
+    difficulty: "Intermediate",
+    description: "Breaking down complex reasoning into step-by-step processes",
+    when_to_use: "Complex analysis, mathematical reasoning, multi-step decisions",
+    example_prompt: "A customer has: Credit score 720, Annual income $80,000, Debt-to-income ratio 35%, Payment history: Perfect for 5 years. Should we approve a $15,000 credit increase? Think step by step.",
+    expected_output: "Step 1: Credit score 720 is good (typically 670+ is acceptable). Step 2: Income of $80K supports $15K credit line. Step 3: Debt ratio 35% is within acceptable range (typically <50%). Step 4: Perfect payment history is strong indicator. RECOMMENDATION: APPROVE",
+    pros: ["Improves reasoning quality", "Easier to debug and verify logic", "Better performance on complex tasks"],
+    cons: ["Longer response time", "More tokens consumed"],
+    amex_example: "Fraud investigation analysis with clear reasoning steps"
+  },
+  {
+    id: 4,
+    name: "Role-Based Prompting",
+    category: "Fundamental",
+    difficulty: "Beginner",
+    description: "Assigning the model a specific professional role or persona",
+    when_to_use: "When you need specialized tone, perspective, or expertise",
+    example_prompt: "You are an experienced Amex customer service representative with 10 years of experience. A frustrated customer writes: 'I've been charged twice for my annual fee! This is unacceptable!' Write a professional, empathetic response that acknowledges the issue and offers a solution.",
+    expected_output: "Thank you for bringing this to our attention. I sincerely apologize for the confusion. We take billing accuracy very seriously. I'm immediately investigating the duplicate charge and will ensure you receive a full refund within 3-5 business days. Additionally, I'm applying a courtesy credit to your account...",
+    pros: ["Dramatically improves tone and perspective", "Ensures domain expertise in responses", "Easy to implement"],
+    cons: ["Model may not perfectly match role expectations", "Requires clear role definition"],
+    amex_example: "Fraud analyst investigating suspicious transactions"
+  },
+  {
+    id: 5,
+    name: "Tree-of-Thought",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Explores multiple reasoning paths to find the best solution",
+    when_to_use: "Complex decision trees, risk assessment, scenario planning",
+    example_prompt: "Evaluate multiple approaches to handling a high-value customer complaint. Generate 3 different resolution strategies, analyze pros/cons of each, then recommend the best approach.",
+    expected_output: "Strategy 1: Full refund + premium upgrade... Strategy 2: Partial refund + loyalty points... Strategy 3: Fee waiver + dedicated support... Analysis shows Strategy 2 balances customer satisfaction with business impact.",
+    pros: ["Explores alternatives systematically", "Better decision quality", "Transparent reasoning"],
+    cons: ["Computationally expensive", "Requires careful prompt design"],
+    amex_example: "Credit line increase decision with multiple evaluation paths"
+  },
+  {
+    id: 6,
+    name: "ReAct Prompting",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Combines reasoning and acting in iterative cycles",
+    when_to_use: "Interactive problem solving, tool usage, complex workflows",
+    example_prompt: "Investigate this fraud alert. Think about what information you need, request it, analyze it, then decide on action. Iterate as needed until you have a recommendation.",
+    expected_output: "Thought: Need transaction history. Action: Retrieve last 30 days. Observation: Pattern shows unusual activity. Thought: Need geographic data. Action: Check locations...",
+    pros: ["Handles dynamic information needs", "Systematic investigation", "Transparent process"],
+    cons: ["Complex to implement", "Requires tool integration"],
+    amex_example: "Multi-step compliance investigation"
+  },
+  {
+    id: 7,
+    name: "Prompt Chaining",
+    category: "Advanced",
+    difficulty: "Intermediate",
+    description: "Sequential prompts where output from one feeds into the next",
+    when_to_use: "Multi-step workflows, content creation pipelines, complex analysis",
+    example_prompt: "Step 1: Extract key customer complaints from feedback. Step 2: Categorize complaints by type. Step 3: Generate response templates for each category. Step 4: Prioritize by urgency.",
+    expected_output: "Chain produces: raw data → structured categories → response templates → prioritized action plan",
+    pros: ["Breaks complexity into manageable steps", "Each step is optimized", "Easier to debug"],
+    cons: ["Requires orchestration", "Multiple API calls"],
+    amex_example: "Customer complaint analysis and response generation pipeline"
+  },
+  {
+    id: 8,
+    name: "Self-Refinement",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Model critiques and improves its own outputs iteratively",
+    when_to_use: "High-quality content generation, critical analysis, compliance verification",
+    example_prompt: "Generate a customer communication about fee changes. Then review it for: clarity, tone, completeness, compliance. Revise based on your critique. Repeat until optimal.",
+    expected_output: "Initial draft → Self-critique: lacks clarity on dates → Revised draft → Self-critique: tone too formal → Final polished version",
+    pros: ["Produces higher quality outputs", "Self-correcting", "Reduces manual review"],
+    cons: ["Multiple iterations needed", "More expensive"],
+    amex_example: "Marketing copy generation with quality assurance"
+  },
+
+  // --------- New Techniques ----------
+  {
+    id: 9,
+    name: "Delimiters & Grounding",
+    category: "Fundamental",
+    difficulty: "Beginner",
+    description: "Separate instructions from data with clear delimiters to avoid confusion and ground answers in provided context.",
+    when_to_use: "Whenever you include source text, policy, or transcripts.",
+    example_prompt: `You are an Amex knowledge assistant. Use only the policy inside the triple quotes to answer.
+\"\"\"[PASTE APPROVED POLICY EXCERPT HERE]\"\"\"
+Question: {QUESTION}
+If the answer is not in the policy, say you don't know and suggest escalation.
+Format: 
+- Answer
+- Policy citation (section/line)`,
+    expected_output: "Answer grounded strictly in the quoted policy and a citation note.",
+    pros: ["Reduces hallucinations", "Clear separation of data vs. instructions"],
+    cons: ["Requires curated source text", "Longer prompts"],
+    amex_example: "Customer benefit eligibility answers using approved T&Cs only."
+  },
+  {
+    id: 10,
+    name: "Structured Outputs (JSON Spec)",
+    category: "Intermediate",
+    difficulty: "Intermediate",
+    description: "Force consistent, parseable outputs by specifying a JSON shape.",
+    when_to_use: "Pipelines, analytics, or when feeding model output to downstream systems.",
+    example_prompt: `Analyze this transaction and return ONLY valid JSON with fields:
+{ 
+  "status": "FRAUD|LEGITIMATE|REVIEW",
+  "confidence": 0-100,
+  "reasons": [string],
+  "recommendation": "string"
+}
+Transaction: {TX_DETAILS}`,
+    expected_output: `{"status":"REVIEW","confidence":78,"reasons":["geographic jump","first-time merchant"],"recommendation":"verify with customer"}`,
+    pros: ["Machine-readable", "Consistent", "Easy to validate"],
+    cons: ["Model may add text unless instructed strongly", "JSON must be well-formed"],
+    amex_example: "Fraud/risk scoring emitted as JSON to case management."
+  },
+  {
+    id: 11,
+    name: "RAG-Style Prompting",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Include retrieved snippets and ask the model to answer strictly from them.",
+    when_to_use: "Policy Q&A, KB answers, compliance, internal SOPs.",
+    example_prompt: `Answer using only these snippets:
+[SNIPPET 1]: {text}
+[SNIPPET 2]: {text}
+User question: {QUESTION}
+Rules: If insufficient evidence, reply: "Insufficient context—please escalate."`,
+    expected_output: "Short answer + reference to the snippet IDs.",
+    pros: ["High factuality", "Traceable answers"],
+    cons: ["Requires retrieval layer", "Snippet quality matters"],
+    amex_example: "Dispute handling rules drawn from internal KB."
+  },
+  {
+    id: 12,
+    name: "Constraint-Based Prompting",
+    category: "Intermediate",
+    difficulty: "Intermediate",
+    description: "Define hard constraints: tone, length, do/don’t lists, risks to avoid.",
+    when_to_use: "Customer comms, legal/compliance messaging.",
+    example_prompt: `Write a response:
+Constraints:
+- Tone: professional, empathetic
+- Length: 120–150 words
+- Do mention: timeline, next steps
+- Do not: promise refunds not approved
+Scenario: {CUSTOMER_ISSUE}`,
+    expected_output: "Polished response adhering to constraints.",
+    pros: ["Brand consistency", "Lower risk messaging"],
+    cons: ["Over-constraining can reduce creativity"],
+    amex_example: "Annual fee dispute replies with approved phrasing."
+  },
+  {
+    id: 13,
+    name: "Style Transfer",
+    category: "Intermediate",
+    difficulty: "Intermediate",
+    description: "Rewrite content in a target tone, voice, or reading level.",
+    when_to_use: "Marketing and CX copy, localization.",
+    example_prompt: `Rewrite the following draft in Amex brand voice (friendly, clear, confident) at Grade 8 reading level.
+Draft: {TEXT}`,
+    expected_output: "Rewritten copy in the requested style.",
+    pros: ["Fast brand alignment", "Improves clarity"],
+    cons: ["Requires a good style brief"],
+    amex_example: "Landing page and email copy alignment."
+  },
+  {
+    id: 14,
+    name: "Socratic Questioning",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Have the model ask clarifying questions before answering.",
+    when_to_use: "Ambiguous or underspecified tasks.",
+    example_prompt: `Before answering, ask up to 3 clarifying questions. Then provide your answer.
+User goal: {GOAL}`,
+    expected_output: "Questions → Final answer.",
+    pros: ["Reduces wrong assumptions", "Better fit answers"],
+    cons: ["Adds an extra turn", "Not ideal for time-critical flows"],
+    amex_example: "Complex travel concierge requests."
+  },
+  {
+    id: 15,
+    name: "Critique-and-Revise (PEP)",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Produce a draft, critique it against a rubric, and revise.",
+    when_to_use: "High-stakes comms, executive summaries.",
+    example_prompt: `Task: Draft → Critique → Revise.
+Rubric: clarity, completeness, compliance, tone.
+Topic: {TOPIC}
+Deliver: final version only, preceded by a short bullet list of the fixes applied.`,
+    expected_output: "List of fixes + improved final draft.",
+    pros: ["Higher quality", "Self-correcting"],
+    cons: ["More tokens/time"],
+    amex_example: "Executive memos and incident postmortems."
+  },
+  {
+    id: 16,
+    name: "Guardrail Refusals",
+    category: "Fundamental",
+    difficulty: "Beginner",
+    description: "Teach the model what to refuse and how to escalate.",
+    when_to_use: "Sensitive data, policy violations.",
+    example_prompt: `If asked for PII or unapproved advice:
+- Respond: "I can’t assist with that."
+- Provide safe alternative or escalate.
+Question: {QUESTION}`,
+    expected_output: `Refusal with safe next steps.`,
+    pros: ["Improves safety", "Reduces policy risk"],
+    cons: ["Needs careful wording"],
+    amex_example: "Refuse to process SSN; route to secure channel."
+  },
+  {
+    id: 17,
+    name: "Output Verification Checklist",
+    category: "Intermediate",
+    difficulty: "Intermediate",
+    description: "Force a checklist verification before final answer.",
+    when_to_use: "Compliance-heavy responses.",
+    example_prompt: `Draft response, then verify against this checklist:
+[ ] No PII included
+[ ] Tone: professional
+[ ] Policy references present
+Return: "PASS" or "REVISE" and final answer.`,
+    expected_output: "PASS + answer OR REVISE + corrected answer.",
+    pros: ["Reduces errors", "Audit-friendly"],
+    cons: ["Longer responses"],
+    amex_example: "Regulatory notifications."
+  },
+  {
+    id: 18,
+    name: "Template Filling (Slots)",
+    category: "Fundamental",
+    difficulty: "Beginner",
+    description: "Provide a template and ask the model to fill in slots.",
+    when_to_use: "Emails, tickets, reports.",
+    example_prompt: `Fill this template using the data:
+Template:
+- Greeting: {greeting}
+- Issue: {issue}
+- Resolution: {resolution}
+Data: {DATA}`,
+    expected_output: "Completed template preserving structure.",
+    pros: ["Consistency", "Easy QA"],
+    cons: ["Rigid format"],
+    amex_example: "Case notes and CRM updates."
+  },
+  {
+    id: 19,
+    name: "Program Synthesis (Spec → Code)",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Turn spec into SQL/Python safely with constraints.",
+    when_to_use: "Analytics and ETL scaffolding.",
+    example_prompt: `Generate a BigQuery SQL to aggregate monthly spend by merchant_category for the last 6 months.
+Constraints:
+- Safe aliases
+- No SELECT *
+- Return only SQL`,
+    expected_output: "Well-formed SQL query.",
+    pros: ["Speeds analytics", "Reduces boilerplate"],
+    cons: ["Review required", "Schema assumptions may be wrong"],
+    amex_example: "Analyst starter queries."
+  },
+  {
+    id: 20,
+    name: "Prompt Compression",
+    category: "Advanced",
+    difficulty: "Advanced",
+    description: "Summarize long context into compact form first.",
+    when_to_use: "Large docs near context limits.",
+    example_prompt: `Step 1: Summarize the 10-page policy into a 400-token brief.
+Step 2: Answer the question using that brief.`,
+    expected_output: "Accurate short brief + grounded answer.",
+    pros: ["Fits long docs", "Keeps key info"],
+    cons: ["Compression may drop details"],
+    amex_example: "Policy digests for agent assist."
+  }
+];
+
+// USE CASES (Expanded to 26+; categories aligned to tabs)
+const useCases = [
+  {
+    id: 1,
+    category: "Customer Service",
+    title: "Customer Inquiry Chatbot",
+    business_context: "Amex receives thousands of customer inquiries daily about accounts, rewards, benefits, and policies",
+    template_prompt: "You are an Amex customer service assistant. Answer the following customer question concisely and professionally. If you're unsure, offer to escalate to a specialist.\n\nCustomer Question: {QUESTION}\n\nProvide: 1. Direct answer 2. Relevant details 3. Next steps if needed",
+    example_prompt_1: "You are an Amex customer service assistant with expertise in rewards programs. A customer asks: 'How do I maximize my rewards points on business purchases?' Provide a helpful response including at least 3 strategies.",
+    example_output_1: "Great question! Here are 3 proven strategies:\n1. Use your Amex Business card for all eligible purchases to earn base points\n2. Watch for Amex Offers and shopping portal multipliers during bonus periods\n3. Consider category-optimized cards (e.g., higher earn rates on travel)\n\nWould you like me to review your specific spending patterns to create a personalized plan?",
+    customization_points: ["Customer type (consumer/business/premium)", "Product focus (cards/loyalty/merchant)", "Tone (formal/friendly/urgent)"],
+    success_metrics: ["First response resolution rate >70%", "Customer satisfaction score >4.5/5", "Escalation rate <15%"]
+  },
+
+  // ---------- CUSTOMER SERVICE ----------
+  {
+    id: 2,
+    category: "Customer Service",
+    title: "Dispute Response Drafting",
+    business_context: "Generate empathetic, policy-aligned first drafts for charge disputes to speed agent handling while maintaining accuracy.",
+    template_prompt: "You are an Amex dispute specialist. Draft a response to the customer using approved, plain-language phrasing.\n\nInputs: {DISPUTE_CONTEXT}\n\nConstraints: professional, empathetic, 120–160 words; no promises beyond policy; propose next steps.",
+    example_prompt_1: "Customer claims: 'I returned a laptop but the merchant still charged me.' Evidence: return label shows delivered; merchant policy: refunds take 7–10 business days; purchase 8 days ago.",
+    example_output_1: "Thanks for reaching out—I know unexpected charges are frustrating. I reviewed your return details and see the item was delivered back to the merchant. Many merchants process refunds within 7–10 business days after receipt. You’re currently on day 8. Here are next steps: (1) we’ll monitor the account for the refund through day 10, (2) if it hasn’t posted by then, we’ll contact the merchant on your behalf, and (3) if needed, we can open a formal dispute. I’ll follow up on [DATE].",
+    customization_points: ["Evidence available", "Merchant policy nuance", "Customer tenure/value tier"],
+    success_metrics: ["Time-to-draft < 10s", "Compliance review pass rate >95%", "Customer CSAT >4.6/5"]
+  },
+  {
+    id: 3,
+    category: "Customer Service",
+    title: "Benefits Eligibility Explainer",
+    business_context: "Explain specific card benefits to customers without overpromising; grounded to policy excerpt.",
+    template_prompt: "Answer only using the policy section provided between triple quotes.\n\"\"\"{BENEFIT_POLICY_EXCERPT}\"\"\"\nQuestion: {QUESTION}\nIf insufficient info, say you don't know and offer to escalate.\nFormat: - Answer - Policy reference (section/line).",
+    example_prompt_1: "Policy excerpt includes trip delay coverage eligibility, 6-hour minimum delay, reimbursable categories. Question: 'Does my card cover hotel costs if my flight is delayed 5 hours?'",
+    example_output_1: "Answer: Based on the excerpt, coverage requires a 6-hour minimum delay. A 5-hour delay would not be eligible.\nPolicy reference: Section 3.2, 'Minimum Delay Threshold'.",
+    customization_points: ["Card product", "Jurisdiction", "Policy version/date"],
+    success_metrics: ["Grounding adherence 100%", "Escalation when unknown", "Zero misinformation incidents"]
+  },
+  {
+    id: 4,
+    category: "Customer Service",
+    title: "Retention Save-Offer Assistant",
+    business_context: "Suggest personalized retention options to reduce churn for fee-related cancellation calls.",
+    template_prompt: "You are an Amex retention assistant. Based on {CUSTOMER_PROFILE} and {OFFER_MATRIX}, suggest 3 save options with rationale and estimated impact. Output in bullets.",
+    example_prompt_1: "Customer profile: 7-year tenure, high-travel spend, upset about annual fee; Offer matrix: fee credit (partial), bonus points with spend, partner lounge passes.",
+    example_output_1: "1) Partial fee credit to acknowledge loyalty; 2) Bonus points targeted to travel categories; 3) Limited lounge passes for upcoming trips. Impact: increases perceived value and addresses immediate travel needs.",
+    customization_points: ["Eligibility rules", "Budget caps", "Seasonal promos"],
+    success_metrics: ["Save rate uplift +10%", "Offer misuse rate <1%"]
+  },
+  {
+    id: 5,
+    category: "Customer Service",
+    title: "Card Replacement Workflow",
+    business_context: "Guide agents/customers through lost/damaged card replacement with safety guardrails.",
+    template_prompt: "You are an Amex assistant. Create step-by-step instructions for {SCENARIO}.\nConstraints: No PII; never ask for full PAN; include fraud-check suggestions; end with confirmation checklist.",
+    example_prompt_1: "Scenario: Card reported lost while traveling abroad; needs expedited replacement.",
+    example_output_1: "Steps: 1) Verify identity using approved method; 2) Temporarily block card; 3) Offer expedited replacement to hotel; 4) Review recent transactions for potential fraud; 5) Confirm contact details; Checklist: block confirmed, address verified, ETA shared.",
+    customization_points: ["Domestic vs international", "Tier (premium vs basic)", "Delivery options"],
+    success_metrics: ["Handle time -15%", "Error rate <1%"]
+  },
+
+  // ---------- FRAUD ----------
+  {
+    id: 6,
+    category: "Fraud",
+    title: "Transaction Fraud Assessment",
+    business_context: "Real-time fraud detection is critical to protect Amex customers and reduce financial losses",
+    template_prompt: "Analyze this credit card transaction for fraud indicators.\n\nTransaction Details:\n- Amount: {AMOUNT}\n- Merchant: {MERCHANT}\n- Location: {LOCATION}\n- Customer History: {HISTORY}\n- Timestamp: {TIME}\n\nProvide: Risk Assessment, Key Indicators, Recommendation",
+    example_prompt_1: "Analyze this suspicious transaction: $4,200 purchase at electronics retailer in Dubai, customer is US-based with 5-year account history, no previous international transactions, last transaction in New York 3 hours ago. All security verification passed.",
+    example_output_1: "Risk Level: HIGH\n\nKey Indicators:\n1. Rapid geographic change (NY→Dubai, 3 hours)\n2. High amount for first international transaction\n3. Electronics retailer risk profile\n4. No prior international pattern\n\nRecommendation: HOLD & VERIFY with customer via phone. Geographic jump is decisive.",
+    customization_points: ["Risk threshold", "Customer profile tier", "Merchant category"],
+    success_metrics: ["False positive rate <5%", "Fraud detection rate >90%", "Response time <100ms"]
+  },
+  {
+    id: 7,
+    category: "Fraud",
+    title: "Impossible Travel Flag",
+    business_context: "Detect location jumps not physically plausible between consecutive transactions.",
+    template_prompt: "Given two consecutive transactions with timestamps and geos, determine plausibility and output JSON: { plausible:boolean, reason:string, action:string }.\nData: {TX_A} then {TX_B}",
+    example_prompt_1: "TX_A: 12:15 PM, New York; TX_B: 1:25 PM, Tokyo; same card.",
+    example_output_1: `{"plausible":false,"reason":"~70 min elapsed for NYC→Tokyo","action":"block and verify"}`,
+    customization_points: ["Velocity thresholds", "Known travel alerts", "Digital wallet vs physical card"],
+    success_metrics: ["Precision/recall >0.9", "Latency <100ms"]
+  },
+  {
+    id: 8,
+    category: "Fraud",
+    title: "Synthetic Identity Signals",
+    business_context: "Flag applications indicative of synthetic identities.",
+    template_prompt: "Assess application fields for synthetic risk using signals (thin file, mismatched SSN year, multiple addresses).\nReturn JSON: {risk:LOW|MEDIUM|HIGH, signals:[..], advice:string}",
+    example_prompt_1: "New application: sparse credit history, multiple recent address changes, email domain newly created.",
+    example_output_1: `{"risk":"HIGH","signals":["thin file","address churn","new email domain"],"advice":"manual review + KYC doc request"}`,
+    customization_points: ["Signal weights", "Region policy", "Product type"],
+    success_metrics: ["Detection uplift +15%", "Manual review precision >80%"]
+  },
+  {
+    id: 9,
+    category: "Fraud",
+    title: "Merchant Category Risk",
+    business_context: "Score relative risk by MCC and behavioral context.",
+    template_prompt: "Score risk 0–100 with top 3 reasons based on MCC history and customer behavior. Input: {TX + PROFILE}",
+    example_prompt_1: "Customer typically groceries & gas; sudden large spend at MCC 5732 (Electronics).",
+    example_output_1: "Score: 68. Reasons: category shift, high ticket, no prior electronics history. Action: soft verify.",
+    customization_points: ["Seasonality", "MCC baselines", "Customer segment"],
+    success_metrics: ["Actionable precision >75%"]
+  },
+
+  // ---------- MARKETING ----------
+  {
+    id: 10,
+    category: "Marketing",
+    title: "Segmented Offer Ideas",
+    business_context: "Brainstorm compliant offers per segment and channel.",
+    template_prompt: "Propose 5 offer ideas for {SEGMENT} via {CHANNEL}. Constraints: compliant phrasing; clear value prop; CTA.",
+    example_prompt_1: "Segment: frequent travelers; Channel: email.",
+    example_output_1: "Ideas: bonus miles on partner airlines; lounge day passes; hotel cashback tiers; airport dining credits; fast-track elite status trial.",
+    customization_points: ["Budget caps", "Partners", "Seasonality"],
+    success_metrics: ["CTR >3%", "Conversion >1%"]
+  },
+  {
+    id: 11,
+    category: "Marketing",
+    title: "A/B Copy Variations",
+    business_context: "Generate multiple on-brand variants quickly.",
+    template_prompt: "Write 6 headline variants (max 60 chars) for {PRODUCT} landing page. Tone: clear, confident. Avoid prohibited claims.",
+    example_prompt_1: "Product: Amex Business Rewards Card.",
+    example_output_1: "1) Turn Business Spend into Rewards\n2) Earn More on What You Already Buy\n3) Your Everyday Purchases, Extra Value\n4) Built for Business Momentum\n5) Smarter Spend. Stronger Rewards.\n6) Rewards that Scale with You",
+    customization_points: ["Length caps", "Compliance lexicon", "Audience persona"],
+    success_metrics: ["Winner lift vs control >10%"]
+  },
+  {
+    id: 12,
+    category: "Marketing",
+    title: "Lifecycle Nurture Sequence",
+    business_context: "Create a 3-email onboarding flow with themes and CTAs.",
+    template_prompt: "Draft a 3-step nurture: Welcome, First Win, Deepen Engagement. Include subject, hook, 2 bullets, CTA.",
+    example_prompt_1: "New Business cardholder onboarding sequence.",
+    example_output_1: "E1 Welcome: set up account, add authorized users. E2 First Win: show rewards tracker, Amex Offers. E3 Deepen: connect accounting app, set alerts.",
+    customization_points: ["Card type", "Persona", "Onboarding milestones"],
+    success_metrics: ["Activation rate +12%", "First-month spend uplift"]
+  },
+
+  // ---------- ANALYTICS ----------
+  {
+    id: 13,
+    category: "Analytics",
+    title: "KPI Summary & Anomalies",
+    business_context: "Daily/weekly KPI briefings for stakeholders.",
+    template_prompt: "Summarize KPIs and flag anomalies with hypotheses.\nInput: {KPI_TABLE}\nOutput: 1) Summary 2) Top 3 anomalies 3) Likely drivers 4) Next checks.",
+    example_prompt_1: "KPIs show approval rate dip on Friday; spike in declines at MCC 4789.",
+    example_output_1: "Summary: overall stable; anomaly: approval ↓2.3% Fri driven by MCC 4789 declines; Driver: rules update? Next: check rule changes, issuer outages, region split.",
+    customization_points: ["Metric thresholds", "Audience (exec vs analyst)", "Visualization hints"],
+    success_metrics: ["Insight usefulness score >80%"]
+  },
+  {
+    id: 14,
+    category: "Analytics",
+    title: "SQL Starter Query",
+    business_context: "Speed up ad-hoc analysis with safe scaffolds.",
+    template_prompt: "Produce BigQuery SQL (no SELECT *). Task: {ANALYTICS_TASK}. Only output SQL.",
+    example_prompt_1: "Monthly spend by merchant_category for last 6 months with YoY.",
+    example_output_1: "SELECT merchant_category, DATE_TRUNC(tx_date, MONTH) AS month, SUM(amount) AS total_amount ...",
+    customization_points: ["Warehouse dialect", "Schema aliases", "Safe limits"],
+    success_metrics: ["Time saved >50%", "Syntax error rate <5%"]
+  },
+  {
+    id: 15,
+    category: "Analytics",
+    title: "Experiment Readout",
+    business_context: "Summarize A/B test with stats and decision.",
+    template_prompt: "Given metrics for control vs variant, compute lift, significance (assume z-test), and recommend ship/hold.\nInput: {AB_TABLE}",
+    example_prompt_1: "Variant B increased CTR from 3.1% to 3.6% on n=100k each.",
+    example_output_1: "Lift +16.1%, p<0.01; Recommend roll-out to 50% with monitoring.",
+    customization_points: ["Stat method", "Guardrails", "Segment slices"],
+    success_metrics: ["Decision confidence >90%"]
+  },
+
+  // ---------- COMPLIANCE ----------
+  {
+    id: 16,
+    category: "Compliance",
+    title: "PCI-DSS Checklist Generator",
+    business_context: "Operational checklists to reduce audit risk.",
+    template_prompt: "Generate a task checklist for {SCOPE} aligned to PCI-DSS scoping best practices. Add role owners and frequency.",
+    example_prompt_1: "Scope: public web app receiving masked card references.",
+    example_output_1: "Tasks: quarterly vuln scan (Security), access review monthly (IT), logging retention (Ops).",
+    customization_points: ["Scope level", "Control library", "Region"],
+    success_metrics: ["Audit pass rate", "Open findings trend ↓"]
+  },
+  {
+    id: 17,
+    category: "Compliance",
+    title: "Customer Communication QA",
+    business_context: "Pre-send compliance checks for regulated comms.",
+    template_prompt: "Review the draft and return JSON: { pass:boolean, issues:[string], fixes:[string] }. Checks: no promises, required disclaimers present, tone professional.",
+    example_prompt_1: "Draft mentions 'guaranteed approval' (not permitted).",
+    example_output_1: `{"pass":false,"issues":["prohibited claim"],"fixes":["replace 'guaranteed' with 'you may be eligible'"]}`,
+    customization_points: ["Prohibited lexicon", "Required phrases", "Jurisdiction"],
+    success_metrics: ["QA catch rate >95%"]
+  },
+  {
+    id: 18,
+    category: "Compliance",
+    title: "Policy Diff Summarizer",
+    business_context: "Explain what changed between two policy versions.",
+    template_prompt: "Compare Policy A vs B and output: Added, Removed, Modified (with section refs) plus 'Risk to Amex' notes.",
+    example_prompt_1: "Changes: updated dispute timeline wording; added definition for 'business day'.",
+    example_output_1: "Modified: timeline clarified; Added: business day def; Risk: low—align comms templates.",
+    customization_points: ["Section numbering", "Audience (legal vs ops)", "Severity rubric"],
+    success_metrics: ["Update turnaround <24h"]
+  },
+
+  // ---------- MORE CUSTOMER SERVICE ----------
+  {
+    id: 19,
+    category: "Customer Service",
+    title: "Accessibility Simplifier",
+    business_context: "Simplify dense policy language for accessibility.",
+    template_prompt: "Rewrite the following in plain language at Grade 7 level while keeping accuracy. Input: {TEXT}",
+    example_prompt_1: "Trip delay coverage exclusions paragraph.",
+    example_output_1: "Simpler, accurate explanation with examples and headings.",
+    customization_points: ["Reading level", "Language (EN/ES)", "Examples"],
+    success_metrics: ["Readability score improvement"]
+  },
+  {
+    id: 20,
+    category: "Customer Service",
+    title: "Travel Concierge Suggestions",
+    business_context: "Curate options with constraints and budget.",
+    template_prompt: "Suggest 5 options for {CITY} trip: hotels, dining, lounges. Constraints: budget {BUDGET}, dietary {DIET}, loyalty partners first.",
+    example_prompt_1: "City: Singapore; Budget: mid; Diet: vegetarian.",
+    example_output_1: "Hotels near business district, lounge access routes, veg-friendly dining list.",
+    customization_points: ["Partner priority", "Customer preferences", "Dates"],
+    success_metrics: ["Customer satisfaction >4.6/5"]
+  },
+
+  // ---------- MORE FRAUD ----------
+  {
+    id: 21,
+    category: "Fraud",
+    title: "Account Takeover Email Review",
+    business_context: "Triage suspicious email requests for changes.",
+    template_prompt: "Classify email into { SAFE | SUSPICIOUS | FRAUD } with reasons and next action.\nInput: {EMAIL_TEXT + META}",
+    example_prompt_1: "Email asks to change phone and address urgently; sender domain misspells company.",
+    example_output_1: "Classification: FRAUD; Reasons: spoofed domain, urgency, PII request; Action: no change, notify security.",
+    customization_points: ["Signal taxonomy", "Confidence bands", "Workflow links"],
+    success_metrics: ["True positive rate >90%"]
+  },
+  {
+    id: 22,
+    category: "Fraud",
+    title: "Device Fingerprint Anomaly",
+    business_context: "Assess new device risk vs historical profile.",
+    template_prompt: "Score 0–100 based on device seen-before, OS, IP reputation, and time-of-day pattern. Output JSON.",
+    example_prompt_1: "New Android device at 3AM local; IP low reputation; past usage iOS daytime.",
+    example_output_1: `{"score":82,"reasons":["new device","off-hours","bad IP rep"],"action":"step-up auth"}`,
+    customization_points: ["Signals & weights", "Business rules", "Customer tier"],
+    success_metrics: ["Interception rate uplift"]
+  },
+
+  // ---------- MORE MARKETING ----------
+  {
+    id: 23,
+    category: "Marketing",
+    title: "SEO FAQ Writer",
+    business_context: "Generate compliant FAQs for product pages.",
+    template_prompt: "Write 6 FAQs + concise answers about {PRODUCT}. Tone: clear; avoid prohibited claims; add internal link anchors.",
+    example_prompt_1: "Product: Amex Travel Rewards.",
+    example_output_1: "Q: How do points work? A: ... (with anchor #earn-points) etc.",
+    customization_points: ["Keywords", "Anchor scheme", "Competitor disclaimers"],
+    success_metrics: ["Organic CTR ↑", "Zero policy violations"]
+  },
+  {
+    id: 24,
+    category: "Marketing",
+    title: "Push Notification Variants",
+    business_context: "Short copy with personalization and caps.",
+    template_prompt: "Create 5 push variants ≤36 chars with {DYNAMIC_FIELDS}. Avoid spam words; clear CTA.",
+    example_prompt_1: "Fields: {first_name}, {nearby_offer}",
+    example_output_1: "“{first_name}, new offer nearby!” …",
+    customization_points: ["Length caps", "Dynamic tokens", "Quiet hours"],
+    success_metrics: ["Open rate benchmark met"]
+  },
+
+  // ---------- MORE ANALYTICS ----------
+  {
+    id: 25,
+    category: "Analytics",
+    title: "Cohort Retention Summary",
+    business_context: "Explain shift in cohort retention with drivers.",
+    template_prompt: "Given cohort table, produce 1-paragraph insight + 3 drivers + 2 follow-ups.",
+    example_prompt_1: "Cohort Feb vs Mar retention gap -3%.",
+    example_output_1: "Insight on onboarding, seasonality, offer timing; follow-ups to test.",
+    customization_points: ["Seasonality flags", "Known events", "Segment filters"],
+    success_metrics: ["Actionable insights score"]
+  },
+  {
+    id: 26,
+    category: "Analytics",
+    title: "Feature Brainstorm for Risk Model",
+    business_context: "Generate candidate features for ML baselines.",
+    template_prompt: "Propose 20 candidate features for fraud baseline using only non-PII transaction metadata.",
+    example_prompt_1: "Metadata fields: amount, MCC, geo, device, time.",
+    example_output_1: "Features: amount z-score, MCC entropy, night-hour ratio, geo distance from home, device novelty…",
+    customization_points: ["Data availability", "Latency limits", "Explainability"],
+    success_metrics: ["Feature acceptance rate"]
+  },
+    {
+    id: 27,
+    category: "Analytics",
+    title: "Feature Brainstorm for Risk Model",
+    business_context: "Generate candidate features for ML baselines.",
+    template_prompt: "Propose 20 candidate features for fraud baseline using only non-PII transaction metadata.",
+    example_prompt_1: "Metadata fields: amount, MCC, geo, device, time.",
+    example_output_1: "Features: amount z-score, MCC entropy, night-hour ratio, geo distance from home, device novelty…",
+    customization_points: ["Data availability", "Latency limits", "Explainability"],
+    success_metrics: ["Feature acceptance rate"]
+  }
+];
+
+// BEST PRACTICES (Expanded)
+const bestPractices = [
+  // DOs
+  {
+    id: 1,
+    category: "DO",
+    title: "Be Specific and Clear",
+    explanation: "Vague prompts lead to vague, unusable responses",
+    before: "Analyze this customer feedback",
+    after: "Classify the sentiment of this customer feedback as POSITIVE, NEGATIVE, or NEUTRAL. Then identify the top 2 specific issues mentioned by the customer.",
+    amex_example: "Instead of 'Check this transaction', write 'Identify fraud risk factors for this transaction: high amount, new merchant, rapid geographic change'",
+    impact: "Increases output accuracy by 60-80%"
+  },
+  {
+    id: 2,
+    category: "DO",
+    title: "Provide Context and Background",
+    explanation: "The model needs to understand your business constraints",
+    before: "Generate a response to this complaint",
+    after: "You are an Amex customer service specialist handling a complaint about high annual fees. The customer has been with Amex for 2 years, has perfect payment history, and is a high-value customer. Generate an empathetic response that acknowledges their concern while highlighting their account benefits.",
+    amex_example: "For fraud analysis, include customer profile: tenure, transaction history, geographic patterns, typical spending",
+    impact: "Reduces irrelevant responses by 70%, increases customer satisfaction"
+  },
+  {
+    id: 3,
+    category: "DO",
+    title: "Give Examples When Possible",
+    explanation: "Examples guide the model toward your desired format and style",
+    before: "Create a summary of this transaction",
+    after: "Create a summary of this transaction following this format:\nExample: 'Transaction: $250 spend at Amazon on 2024-01-15. Classification: LEGITIMATE. Confidence: 95%. Reason: Matches customer profile.'\n\nNow summarize: [transaction data]",
+    amex_example: "Few-shot prompting for consistent fraud alerts with standard format",
+    impact: "Reduces formatting errors by 90%, improves consistency"
+  },
+  {
+    id: 4,
+    category: "DO",
+    title: "Test and Iterate",
+    explanation: "Prompt engineering is iterative; refinement leads to better results",
+    before: "Using the same prompt every time",
+    after: "Test prompt → Review output → Identify issues → Refine prompt → Test again → Document final version",
+    amex_example: "A/B test two different prompt phrasings with the same input and compare outputs",
+    impact: "Improves output quality by 40-50% through iterations"
+  },
+  {
+    id: 5,
+    category: "DO",
+    title: "Pin the Output Format",
+    explanation: "Specify strict JSON/CSV/Bullets to make results parseable",
+    before: "Give me insights",
+    after: "Return only valid JSON: {\"insights\":[string],\"risk\":\"LOW|MEDIUM|HIGH\"}",
+    amex_example: "Fraud pipeline consumes JSON; enforce schema",
+    impact: "Parse failures reduced by 90%"
+  },
+  {
+    id: 6,
+    category: "DO",
+    title: "Ground in Approved Sources",
+    explanation: "Quote or include policy snippets to prevent hallucinations",
+    before: "Explain lounge eligibility",
+    after: "Use the excerpt provided and cite the section number",
+    amex_example: "Agent assist answers only from policy extracts",
+    impact: "Misinformation incidents → near zero"
+  },
+
+  // DON'Ts
+  {
+    id: 7,
+    category: "DON'T",
+    title: "Use Vague or Ambiguous Language",
+    explanation: "The model takes instructions literally; ambiguity causes misinterpretation",
+    before: "Write something about our card benefits",
+    after: "Write a 150-word description of the top 5 benefits of the Amex Premium card specifically for business owners",
+    amex_example: "Don't say 'Handle customer issue'; say 'If customer requests card replacement due to damage, process with overnight shipping and waive replacement fee'",
+    impact: "Reduces misinterpretation by 85%"
+  },
+  {
+    id: 8,
+    category: "DON'T",
+    title: "Assume the Model Understands Unstated Goals",
+    explanation: "Always state your objective explicitly",
+    before: "What do you think about this transaction?",
+    after: "Determine if this transaction is fraudulent (FRAUD/LEGITIMATE) with confidence score and reasoning. Consider: geographic anomalies, merchant category, amount deviation from average.",
+    amex_example: "Always specify output format and decision labels",
+    impact: "Rework reduced by 60%"
+  },
+  {
+    id: 9,
+    category: "DON'T",
+    title: "Forget to Specify Output Format",
+    explanation: "Unspecified format leads to unparseable outputs",
+    before: "Analyze this data",
+    after: "Analyze this data and provide output in JSON format with fields: status, risk_level, confidence_score, key_factors, recommendation",
+    amex_example: "For APIs: enforce JSON; for reports: bullets/tables",
+    impact: "Automations succeed reliably"
+  },
+  {
+    id: 10,
+    category: "DON'T",
+    title: "Include Sensitive Data",
+    explanation: "Never put full PAN, SSN, DOB, or addresses in prompts",
+    before: "Card 3782-xxxx-xxxx-0001",
+    after: "[MASKED_CARD] and [CUSTOMER_ID] only",
+    amex_example: "Redact before prompting; use secure references",
+    impact: "Security incidents avoided"
+  }
+];
+
+const commonMistakes = [
+  {
+    title: "Mixing Multiple Complex Tasks",
+    description: "Asking the model to do too much in one prompt reduces quality",
+    example: "Analyze fraud, summarize transaction, check compliance, and suggest customer outreach",
+    solution: "Break into separate prompts: 1) Fraud analysis 2) Compliance check 3) Outreach recommendation"
+  },
+  {
+    title: "Ignoring Security Requirements",
+    description: "Financial data requires special handling",
+    example: "Prompt includes actual customer SSN or full card numbers",
+    solution: "Redact sensitive data or use placeholders: [CUSTOMER_ID], [MASKED_CARD]"
+  },
+  {
+    title: "Not Validating Outputs",
+    description: "AI can hallucinate or make mistakes",
+    example: "Using all AI responses without verification",
+    solution: "Always validate: check for hallucinations, verify facts, test with known examples"
+  },
+  {
+    title: "Creating Overly Long Prompts",
+    description: "Exceeding context windows or losing clarity",
+    example: "50+ page prompt document",
+    solution: "Keep prompts focused (typically 300-500 tokens). Use retrieval for long context."
+  },
+  {
+    title: "No Rubric for 'Good'",
+    description: "Without a rubric, quality drifts over time",
+    example: "Everyone edits prompts ad hoc",
+    solution: "Define a rubric: correctness, completeness, safety, format, tone"
+  }
+];
+
+// FAQ (Expanded)
+const faqs = [
+  { q: "What's the difference between zero-shot and few-shot prompting?", a: "Zero-shot: no examples, relies on model knowledge. Few-shot: includes examples to demonstrate format/style, improving accuracy on nuanced tasks.", relevance: "beginner" },
+  { q: "How do I improve response quality?", a: "Be more specific; provide context; add few-shot examples; constrain output format; use chain-of-thought for complex tasks; iterate.", relevance: "intermediate" },
+  { q: "When should I use prompt chaining?", a: "When the task is multi-step or benefits from separation (extract → analyze → recommend).", relevance: "advanced" },
+  { q: "How do I handle sensitive data in prompts?", a: "Redact PII: use [CUSTOMER_ID], [MASKED_CARD]. Never paste PAN/SSN. Prefer secure references.", relevance: "security" },
+  { q: "What's the ideal prompt length?", a: "100–500 tokens for most tasks. Be concise but complete. Use RAG when context is long.", relevance: "beginner" },
+  { q: "How do I get consistent results?", a: "Use structured outputs, stable temperature (0.2–0.5), consistent phrasing, and example-driven templates.", relevance: "intermediate" },
+  { q: "How do I evaluate prompt quality?", a: "Define a rubric (correctness, completeness, safety, format). A/B test prompts with the same inputs.", relevance: "advanced" },
+  { q: "How do I prevent hallucinations?", a: "Ground answers with snippets, cite sources, instruct to say 'insufficient context' if unsure.", relevance: "advanced" },
+  { q: "What is temperature and when to adjust it?", a: "Lower (0.0–0.3) for deterministic tasks; higher (0.7+) for brainstorming.", relevance: "beginner" },
+  { q: "Can I force JSON outputs?", a: "Yes. Specify the schema and say 'Return ONLY valid JSON'. Validate and retry if malformed.", relevance: "intermediate" }
+];
+
+// -----------------------------
+// STATE & INIT (UNCHANGED)
+// -----------------------------
+let currentSection = 'home';
+let searchIndex = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+  initializeNavigation();
+  initializeSearch();
+  renderTheorySection();
+  renderTechniquesSection();
+  renderUseCasesSection();
+  renderBestPracticesSection();
+  renderPromptLibrary();
+  renderFAQSection();
+  initializeBackToTop();
+  initializeAccordion();
+  initializeTabs();
+  initializeFilters();
+  buildSearchIndex();
+});
+
+// -----------------------------
+// NAVIGATION (UNCHANGED)
+// -----------------------------
+function initializeNavigation() {
+  const navLinks = document.querySelectorAll('.sidebar-nav-link');
+  const breadcrumbLinks = document.querySelectorAll('.breadcrumb-link');
+  const navCards = document.querySelectorAll('[data-navigate]');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const section = link.getAttribute('data-section');
+      navigateToSection(section);
+    });
+  });
+
+  breadcrumbLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const section = link.getAttribute('data-section');
+      navigateToSection(section);
+    });
+  });
+
+  navCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const section = card.getAttribute('data-navigate');
+      navigateToSection(section);
+    });
+  });
+}
+
+function navigateToSection(section) {
+  document.querySelectorAll('.content-section').forEach(s => { s.classList.add('hidden'); });
+  document.getElementById(section).classList.remove('hidden');
+
+  document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('data-section') === section) link.classList.add('active');
+  });
+
+  window.scrollTo(0, 0);
+  currentSection = section;
+}
+
+// -----------------------------
+// SEARCH (UNCHANGED)
+// -----------------------------
+function buildSearchIndex() {
+  searchIndex = [];
+
+  theoryModules.forEach(module => {
+    searchIndex.push({
+      title: module.title,
+      description: module.description,
+      category: 'Theory',
+      section: 'theory',
+      keywords: [module.title.toLowerCase(), module.description.toLowerCase()]
+    });
+  });
+
+  techniques.forEach(technique => {
+    searchIndex.push({
+      title: technique.name,
+      description: technique.description,
+      category: 'Technique',
+      section: 'techniques',
+      keywords: [technique.name.toLowerCase(), technique.description.toLowerCase(), technique.category.toLowerCase()]
+    });
+  });
+
+  useCases.forEach(useCase => {
+    searchIndex.push({
+      title: useCase.title,
+      description: useCase.business_context,
+      category: useCase.category,
+      section: 'use-cases',
+      keywords: [useCase.title.toLowerCase(), useCase.category.toLowerCase(), useCase.business_context.toLowerCase()]
+    });
+  });
+
+  bestPractices.forEach(practice => {
+    searchIndex.push({
+      title: practice.title,
+      description: practice.explanation,
+      category: 'Best Practice',
+      section: 'best-practices',
+      keywords: [practice.title.toLowerCase(), practice.explanation.toLowerCase()]
+    });
+  });
+
+  faqs.forEach(faq => {
+    searchIndex.push({
+      title: faq.q,
+      description: faq.a,
+      category: 'FAQ',
+      section: 'faq',
+      keywords: [faq.q.toLowerCase(), faq.a.toLowerCase()]
+    });
+  });
+}
+
+function initializeSearch() {
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+
+    if (query.length < 2) {
+      searchResults.classList.add('hidden');
+      return;
+    }
+
+    const results = searchIndex.filter(item => {
+      return item.keywords.some(keyword => keyword.includes(query));
+    }).slice(0, 8);
+
+    if (results.length > 0) {
+      renderSearchResults(results);
+      searchResults.classList.remove('hidden');
+    } else {
+      searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-title">No results found</div></div>';
+      searchResults.classList.remove('hidden');
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+      searchResults.classList.add('hidden');
+    }
+  });
+}
+
+function renderSearchResults(results) {
+  const searchResults = document.getElementById('searchResults');
+  searchResults.innerHTML = results.map(result => `
+    <div class="search-result-item" onclick="navigateToSection('${result.section}'); document.getElementById('searchResults').classList.add('hidden');">
+      <div class="search-result-title">${result.title}</div>
+      <div class="search-result-description">${result.description.substring(0, 100)}...</div>
+      <div class="search-result-category">${result.category}</div>
+    </div>
+  `).join('');
+}
+
+// -----------------------------
+// THEORY (UNCHANGED RENDERER)
+// -----------------------------
+function renderTheorySection() {
+  const accordion = document.getElementById('theoryAccordion');
+  accordion.innerHTML = theoryModules.map(module => `
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <h3 class="accordion-title">${module.title}</h3>
+        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+      <div class="accordion-content">
+        <p class="accordion-description">${module.description}</p>
+        ${module.content.map(section => `
+          <div class="accordion-section">
+            <h4>${section.heading}</h4>
+            ${section.text ? `<p>${section.text}</p>` : ''}
+            ${section.points ? `<ul>${section.points.map(point => `<li>${point}</li>`).join('')}</ul>` : ''}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// -----------------------------
+// TECHNIQUES (UNCHANGED RENDERER)
+// -----------------------------
+function renderTechniquesSection() {
+  const techniquesList = document.getElementById('techniquesList');
+  techniquesList.innerHTML = techniques.map(technique => `
+    <div class="technique-card">
+      <div class="technique-header">
+        <div>
+          <h3 class="technique-title">${technique.name}</h3>
+          <span class="technique-badge">${technique.difficulty}</span>
+        </div>
+      </div>
+      <p class="technique-description">${technique.description}</p>
+
+      <div class="technique-section">
+        <h5>When to Use</h5>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">${technique.when_to_use}</p>
+      </div>
+
+      <div class="technique-section">
+        <h5>Example Prompt</h5>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this, \`${technique.example_prompt.replace(/`/g, '\\`').replace(/\\/g,'\\\\').replace(/\n/g, '\\n')}\`)">Copy</button>
+          <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word;">${technique.example_prompt}</pre>
+        </div>
+      </div>
+
+      <div class="technique-section">
+        <h5>Expected Output</h5>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); font-style: italic;">${technique.expected_output}</p>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h6>Pros</h6>
+          <ul>${technique.pros.map(pro => `<li>${pro}</li>`).join('')}</ul>
+        </div>
+        <div class="cons">
+          <h6>Cons</h6>
+          <ul>${technique.cons.map(con => `<li>${con}</li>`).join('')}</ul>
+        </div>
+      </div>
+
+      <div class="technique-section">
+        <h5>Amex Example Use Case</h5>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">${technique.amex_example}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// -----------------------------
+// USE CASES (UNCHANGED RENDERER)
+// -----------------------------
+function renderUseCasesSection() {
+  const useCasesList = document.getElementById('useCasesList');
+  useCasesList.innerHTML = useCases.map(useCase => `
+    <div class="use-case-card" data-category="${useCase.category.toLowerCase().replace(/ /g, '-')}">
+      <span class="use-case-category">${useCase.category}</span>
+      <h3 class="use-case-title">${useCase.title}</h3>
+
+      <div class="use-case-context">
+        <div class="use-case-context-title">Business Context</div>
+        <div class="use-case-context-text">${useCase.business_context}</div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Template Prompt</div>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this, \`${useCase.template_prompt.replace(/`/g, '\\`').replace(/\\/g,'\\\\').replace(/\n/g, '\\n')}\`)">Copy</button>
+          <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word;">${useCase.template_prompt}</pre>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Example Prompt</div>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyToClipboard(this, \`${useCase.example_prompt_1.replace(/`/g, '\\`').replace(/\\/g,'\\\\').replace(/\n/g, '\\n')}\`)">Copy</button>
+          <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word;">${useCase.example_prompt_1}</pre>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Expected Output</div>
+        <div style="background-color: var(--color-bg-3); padding: var(--space-16); border-radius: var(--radius-base); font-size: var(--font-size-sm); color: var(--color-text-secondary); white-space: pre-wrap;">${useCase.example_output_1}</div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Customization Points</div>
+        <ul style="list-style: none; padding-left: 0;">
+          ${useCase.customization_points.map(point => `<li style="font-size: var(--font-size-sm); color: var(--color-text-secondary); padding-left: var(--space-20); position: relative; margin-bottom: var(--space-6);"><span style="position: absolute; left: 0; color: var(--color-primary); font-weight: bold;">→</span>${point}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Success Metrics</div>
+        <ul style="list-style: none; padding-left: 0;">
+          ${useCase.success_metrics.map(metric => `<li style="font-size: var(--font-size-sm); color: var(--color-text-secondary); padding-left: var(--space-20); position: relative; margin-bottom: var(--space-6);"><span style="position: absolute; left: 0; color: var(--color-success); font-weight: bold;">✓</span>${metric}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+}
+
+// -----------------------------
+// BEST PRACTICES (UNCHANGED RENDERER)
+// -----------------------------
+function renderBestPracticesSection() {
+  const doPractices = bestPractices.filter(p => p.category === 'DO');
+  const dontPractices = bestPractices.filter(p => p.category === "DON'T");
+
+  document.getElementById('bestPracticesDo').innerHTML = doPractices.map(practice => `
+    <div class="practice-card">
+      <div class="practice-header">
+        <div class="practice-icon">✅</div>
+        <h3 class="practice-title">${practice.title}</h3>
+      </div>
+      <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); margin-bottom: var(--space-16);">${practice.explanation}</p>
+
+      <div class="comparison">
+        <div class="before">
+          <h6>Before</h6>
+          <code>${practice.before}</code>
+        </div>
+        <div class="after">
+          <h6>After</h6>
+          <code>${practice.after}</code>
+        </div>
+      </div>
+
+      <div style="background-color: var(--color-bg-1); padding: var(--space-12); border-radius: var(--radius-base); margin-bottom: var(--space-12);">
+        <strong style="font-size: var(--font-size-sm);">Amex Example:</strong>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: var(--space-4) 0 0 0;">${practice.amex_example}</p>
+      </div>
+
+      <div style="font-size: var(--font-size-sm); color: var(--color-primary); font-weight: var(--font-weight-medium);">
+        Impact: ${practice.impact}
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('bestPracticesDont').innerHTML = dontPractices.map(practice => `
+    <div class="practice-card">
+      <div class="practice-header">
+        <div class="practice-icon">❌</div>
+        <h3 class="practice-title">${practice.title}</h3>
+      </div>
+      <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); margin-bottom: var(--space-16);">${practice.explanation}</p>
+
+      <div class="comparison">
+        <div class="before">
+          <h6>Bad Example</h6>
+          <code>${practice.before}</code>
+        </div>
+        <div class="after">
+          <h6>Good Example</h6>
+          <code>${practice.after}</code>
+        </div>
+      </div>
+
+      <div style="background-color: var(--color-bg-1); padding: var(--space-12); border-radius: var(--radius-base); margin-bottom: var(--space-12);">
+        <strong style="font-size: var(--font-size-sm);">Amex Example:</strong>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: var(--space-4) 0 0 0;">${practice.amex_example}</p>
+      </div>
+
+      <div style="font-size: var(--font-size-sm); color: var(--color-primary); font-weight: var(--font-weight-medium);">
+        Impact: ${practice.impact}
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('commonMistakes').innerHTML = commonMistakes.map(mistake => `
+    <div class="practice-card">
+      <div class="practice-header">
+        <div class="practice-icon">⚠️</div>
+        <h3 class="practice-title">${mistake.title}</h3>
+      </div>
+      <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); margin-bottom: var(--space-16);">${mistake.description}</p>
+
+      <div style="background-color: var(--color-bg-4); padding: var(--space-12); border-radius: var(--radius-base); margin-bottom: var(--space-12);">
+        <strong style="font-size: var(--font-size-sm);">Problem Example:</strong>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: var(--space-4) 0 0 0;">${mistake.example}</p>
+      </div>
+
+      <div style="background-color: var(--color-bg-3); padding: var(--space-12); border-radius: var(--radius-base);">
+        <strong style="font-size: var(--font-size-sm);">Solution:</strong>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: var(--space-4) 0 0 0;">${mistake.solution}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// -----------------------------
+// PROMPT LIBRARY (UNCHANGED RENDERER)
+// -----------------------------
+function renderPromptLibrary() {
+  const libraryList = document.getElementById('promptLibraryList');
+  const allPrompts = [...techniques, ...useCases];
+
+  libraryList.innerHTML = allPrompts.map(item => {
+    const isUseCase = item.hasOwnProperty('business_context');
+    return `
+      <div class="technique-card" data-difficulty="${item.difficulty?.toLowerCase() || 'intermediate'}" data-category="${(item.category || '').toLowerCase().replace(/ /g, '-')}">
+        <div class="technique-header">
+          <div>
+            <h3 class="technique-title">${item.name || item.title}</h3>
+            <span class="technique-badge">${item.difficulty || item.category}</span>
+          </div>
+        </div>
+        <p class="technique-description">${item.description || item.business_context}</p>
+
+        <div class="technique-section">
+          <h5>${isUseCase ? 'Template Prompt' : 'Example Prompt'}</h5>
+          <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this, \`${(item.template_prompt || item.example_prompt).replace(/`/g, '\\`').replace(/\\/g,'\\\\').replace(/\n/g, '\\n')}\`)">Copy</button>
+            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word;">${item.template_prompt || item.example_prompt}</pre>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// -----------------------------
+// FAQ (UNCHANGED RENDERER)
+// -----------------------------
+function renderFAQSection() {
+  const faqList = document.getElementById('faqList');
+  faqList.innerHTML = faqs.map(faq => `
+    <div class="faq-item">
+      <div class="faq-question">${faq.q}</div>
+      <div class="faq-answer">${faq.a}</div>
+      <span class="faq-tag">${faq.relevance}</span>
+    </div>
+  `).join('');
+}
+
+// -----------------------------
+// ACCORDION / TABS / FILTERS / COPY / TOP (UNCHANGED)
+// -----------------------------
+function initializeAccordion() {
+  document.addEventListener('click', (e) => {
+    const header = e.target.closest('.accordion-header');
+    if (header) {
+      const item = header.parentElement;
+      const isActive = item.classList.contains('active');
+
+      const accordion = item.parentElement;
+      accordion.querySelectorAll('.accordion-item').forEach(i => { i.classList.remove('active'); });
+
+      if (!isActive) item.classList.add('active');
+    }
+  });
+}
+
+function initializeTabs() {
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab');
+
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const useCaseCards = document.querySelectorAll('.use-case-card');
+      useCaseCards.forEach(card => {
+        if (tab === 'all' || card.getAttribute('data-category') === tab) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+function initializeFilters() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const promptCards = document.querySelectorAll('#promptLibraryList .technique-card');
+      promptCards.forEach(card => {
+        const difficulty = card.getAttribute('data-difficulty');
+        const category = card.getAttribute('data-category');
+
+        if (filter === 'all' || difficulty === filter || category === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+function copyToClipboard(btn, text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+
+  const originalText = btn.textContent;
+  btn.textContent = 'Copied!';
+  setTimeout(() => { btn.textContent = originalText; }, 2000);
+}
+
+function initializeBackToTop() {
+  const backToTopBtn = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+</script>
+</body>
+</html>

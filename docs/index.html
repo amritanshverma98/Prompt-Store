@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amex Prompt Store - Generative AI Learning Platform</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+</head>
+<body>
+<div class="app-container">
+    <!-- Sidebar Navigation (UNCHANGED) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            Prompt Store
+        </div>
+        <nav>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link active" data-section="home">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="theory">
+                        <span class="sidebar-nav-icon">📚</span>
+                        <span>Theory</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="crash-course">
+                        <span class="sidebar-nav-icon">⚡</span>
+                        <span>Crash Course</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="techniques">
+                        <span class="sidebar-nav-icon">🔧</span>
+                        <span>Techniques</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="use-cases">
+                        <span class="sidebar-nav-icon">💼</span>
+                        <span>Use Cases</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="best-practices">
+                        <span class="sidebar-nav-icon">✅</span>
+                        <span>Best Practices</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="library">
+                        <span class="sidebar-nav-icon">📖</span>
+                        <span>Prompt Library</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="faq">
+                        <span class="sidebar-nav-icon">❓</span>
+                        <span>FAQ</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" data-section="resources">
+                        <span class="sidebar-nav-icon">🔗</span>
+                        <span>Resources</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section (UNCHANGED HEADER) -->
+        <section id="home" class="content-section">
+            <div class="header">
+                <div class="breadcrumb">
+                    <span>Home</span>
+                </div>
+                <h1 class="page-title">American Express Prompt Store</h1>
+                <p class="page-description">Your comprehensive guide to mastering generative AI prompt engineering. From foundational theory to advanced techniques, discover everything you need to create effective prompts for Amex use cases.</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for prompts, techniques, or use cases..." />
+                <div class="search-results hidden" id="searchResults"></div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Theory Modules</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">10+</div>
+                    <div class="stat-label">Advanced Techniques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">20+</div>
+                    <div class="stat-label">Use Cases</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Example Prompts</div>
+                </div>
+            </div>
+
+            <!-- Quick Navigation Cards -->
+            <div class="card-grid">
+                <div class="card" data-navigate="theory">
+                    <div class="card-icon" style="background-color: var(--color-bg-1);">📚</div>
+                    <h3 class="card-title">Theory</h3>
+                    <p class="card-description">Master the fundamentals of prompt engineering with deep foundational knowledge about LLMs and core principles.</p>
+                </div>
+                <div class="card" data-navigate="crash-course">
+                    <div class="card-icon" style="background-color: var(--color-bg-2);">⚡</div>
+                    <h3 class="card-title">Crash Course</h3>
+                    <p class="card-description">Get started quickly with essential concepts and practical exercises in just 5 minutes.</p>
+                </div>
+                <div class="card" data-navigate="techniques">
+                    <div class="card-icon" style="background-color: var(--color-bg-3);">🔧</div>
+                    <h3 class="card-title">Advanced Techniques</h3>
+                    <p class="card-description">Explore sophisticated prompting methods like Chain-of-Thought, Few-Shot, and Prompt Chaining.</p>
+                </div>
+                <div class="card" data-navigate="use-cases">
+                    <div class="card-icon" style="background-color: var(--color-bg-4);">💼</div>
+                    <h3 class="card-title">Use Cases</h3>
+                    <p class="card-description">Discover real Amex use cases across customer service, fraud detection, compliance, and more.</p>
+                </div>
+                <div class="card" data-navigate="best-practices">
+                    <div class="card-icon" style="background-color: var(--color-bg-5);">✅</div>
+                    <h3 class="card-title">Best Practices</h3>
+                    <p class="card-description">Learn what to do and what to avoid with comprehensive dos and don'ts examples.</p>
+                </div>
+                <div class="card" data-navigate="library">
+                    <div class="card-icon" style="background-color: var(--color-bg-6);">📖</div>
+                    <h3 class="card-title">Prompt Library</h3>
+                    <p class="card-description">Browse our extensive collection of ready-to-use prompts organized by category and difficulty.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theory Section -->
+        <section id="theory" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Theory</span>
+                </div>
+                <h1 class="page-title">Prompt Engineering Theory</h1>
+                <p class="page-description">Build a strong foundation in prompt engineering with comprehensive theoretical knowledge.</p>
+            </div>
+
+            <div class="accordion" id="theoryAccordion"></div>
+        </section>
+
+        <!-- Crash Course Section (UNCHANGED HEADER) -->
+        <section id="crash-course" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Crash Course</span>
+                </div>
+                <h1 class="page-title">Crash Course in Prompt Engineering</h1>
+                <p class="page-description">Master the essentials in minutes with this quick-start guide.</p>
+            </div>
+
+            <div class="accordion">
+                <!-- (UNCHANGED ACCORDION ITEMS FROM YOUR FILE) -->
+                <!-- kept identical; content remains, already practical and concise -->
+                <!-- 5-Minute Intro, 3 Golden Rules, First Prompt, Patterns, Practice Exercise -->
+                <!-- START of original items -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">5-Minute Introduction</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="accordion-description">Prompt engineering is about giving AI clear instructions to get the results you want. Think of it like managing a highly capable but literal assistant.</p>
+
+                        <div class="accordion-section">
+                            <h4>Essential Concepts:</h4>
+                            <ul>
+                                <li><strong>Clarity is King:</strong> Be explicit about what you want</li>
+                                <li><strong>Context Matters:</strong> Give the AI background information</li>
+                                <li><strong>Examples Help:</strong> Show what you're looking for</li>
+                                <li><strong>Format Matters:</strong> Specify how you want the output</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">The 3 Golden Rules</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>1. Clarity</h4>
+                            <p>Be specific and unambiguous. Replace "analyze this transaction" with "identify fraud risk factors including geographic anomalies, amount deviations, and merchant category risks."</p>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>2. Context</h4>
+                            <p>Provide relevant background. For Amex customer service, include: customer tier, account history, previous interactions, and specific product details.</p>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>3. Constraints</h4>
+                            <p>Define boundaries and format. Specify response length, output structure (JSON, bullets, narrative), tone, and any compliance requirements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Building Your First Prompt</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>Step-by-Step Walkthrough:</h4>
+                            <p><strong>Step 1: Define the Task</strong><br>"I need to classify customer sentiment from feedback."</p>
+                            <p><strong>Step 2: Add Context</strong><br>"You are an Amex customer service analyst reviewing feedback about credit card rewards programs."</p>
+                            <p><strong>Step 3: Specify Output</strong><br>"Classify as POSITIVE, NEGATIVE, or NEUTRAL and provide the main reason."</p>
+                            <p><strong>Step 4: Add Examples (if needed)</strong><br>Show 2-3 examples of the classification format you want.</p>
+                            <p><strong>Final Prompt:</strong></p>
+                            <div class="code-block">
+You are an Amex customer service analyst. Classify the sentiment of customer feedback about our rewards programs as POSITIVE, NEGATIVE, or NEUTRAL.
+
+Feedback: {CUSTOMER_FEEDBACK}
+
+Provide:
+1. Classification: [POSITIVE/NEGATIVE/NEUTRAL]
+2. Main reason: [brief explanation]
+3. Confidence: [High/Medium/Low]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Common Prompt Patterns</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>1. Role-Based Pattern</h4>
+                            <p>"You are a [ROLE] with [EXPERTISE]. Your task is to [ACTION]."</p>
+                            <p>Example: "You are an experienced fraud analyst with 10 years at Amex. Analyze this transaction for fraud indicators."</p>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>2. Template-Based Pattern</h4>
+                            <p>Provide a structured template with placeholders.</p>
+                            <div class="code-block">
+Analyze: {INPUT}
+Format:
+- Risk Level: [HIGH/MEDIUM/LOW]
+- Key Indicators: [list]
+- Recommendation: [action]
+                            </div>
+                        </div>
+
+                        <div class="accordion-section">
+                            <h4>3. Step-by-Step Pattern</h4>
+                            <p>Break complex tasks into ordered steps.</p>
+                            <p>"First, identify the transaction type. Second, check against historical patterns. Third, calculate risk score. Finally, make a recommendation."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Practice Exercise</h3>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-section">
+                            <h4>Challenge: Create a Customer Service Response Prompt</h4>
+                            <p><strong>Scenario:</strong> A customer complains about being charged an annual fee after canceling their card.</p>
+                            <p><strong>Your Task:</strong> Write a prompt that generates an empathetic, professional response that:</p>
+                            <ul>
+                                <li>Acknowledges the customer's frustration</li>
+                                <li>Explains the cancellation timing policy</li>
+                                <li>Offers a solution or escalation path</li>
+                                <li>Maintains Amex's brand voice</li>
+                            </ul>
+
+                            <h4>Try This:</h4>
+                            <div class="code-block">
+You are an Amex senior customer service representative known for empathy and problem-solving.
+
+Customer Issue: {COMPLAINT}
+
+Generate a response that:
+1. Acknowledges their frustration specifically
+2. Explains relevant policy in plain language
+3. Offers concrete next steps
+4. Ends with reassurance
+
+Tone: Professional yet warm
+Length: 100-150 words
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END of original items -->
+            </div>
+        </section>
+
+        <!-- Techniques Section -->
+        <section id="techniques" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Techniques</span>
+                </div>
+                <h1 class="page-title">Advanced Prompting Techniques</h1>
+                <p class="page-description">Master sophisticated methods to unlock the full potential of AI models.</p>
+            </div>
+
+            <div id="techniquesList"></div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section id="use-cases" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Use Cases</span>
+                </div>
+                <h1 class="page-title">Amex Use Cases</h1>
+                <p class="page-description">Explore real-world applications of prompt engineering across American Express business domains.</p>
+            </div>
+
+            <!-- Tabs for Categories -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="all">All Use Cases</button>
+                <button class="tab-btn" data-tab="customer-service">Customer Service</button>
+                <button class="tab-btn" data-tab="fraud">Fraud</button>
+                <button class="tab-btn" data-tab="marketing">Marketing</button>
+                <button class="tab-btn" data-tab="analytics">Analytics</button>
+                <button class="tab-btn" data-tab="compliance">Compliance</button>
+            </div>
+
+            <div id="useCasesList"></div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section id="best-practices" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Best Practices</span>
+                </div>
+                <h1 class="page-title">Best Practices &amp; Guidelines</h1>
+                <p class="page-description">Learn the dos and don'ts of effective prompt engineering with real Amex examples.</p>
+            </div>
+
+            <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-24); color: var(--color-text);">✅ DO: Follow These Best Practices</h2>
+            <div id="bestPracticesDo"></div>
+
+            <h2 style="font-size: var(--font-size-2xl); margin-top: var(--space-32); margin-bottom: var(--space-24); color: var(--color-text);">❌ DON'T: Avoid These Common Mistakes</h2>
+            <div id="bestPracticesDont"></div>
+
+            <h2 style="font-size: var(--font-size-2xl); margin-top: var(--space-32); margin-bottom: var(--space-24); color: var(--color-text);">⚠️ Common Mistakes to Avoid</h2>
+            <div id="commonMistakes"></div>
+        </section>
+
+        <!-- Library Section -->
+        <section id="library" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Prompt Library</span>
+                </div>
+                <h1 class="page-title">Prompt Library</h1>
+                <p class="page-description">Browse and search our comprehensive collection of ready-to-use prompts.</p>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                <button class="filter-btn" data-filter="advanced">Advanced</button>
+                <button class="filter-btn" data-filter="customer-service">Customer Service</button>
+                <button class="filter-btn" data-filter="fraud">Fraud</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+            </div>
+
+            <div id="promptLibraryList"></div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>FAQ</span>
+                </div>
+                <h1 class="page-title">Frequently Asked Questions</h1>
+                <p class="page-description">Quick answers to common questions about prompt engineering.</p>
+            </div>
+
+            <div class="faq-list" id="faqList"></div>
+        </section>
+
+        <!-- Resources Section (UNCHANGED) -->
+        <section id="resources" class="content-section hidden">
+            <div class="header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" data-section="home">Home</a>
+                    <span> / </span>
+                    <span>Resources</span>
+                </div>
+                <h1 class="page-title">Resources &amp; References</h1>
+                <p class="page-description">External resources, research papers, and additional learning materials.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-1);">📄</div>
+                    <h3 class="card-title">OpenAI Prompt Engineering Guide</h3>
+                    <p class="card-description">Official documentation and best practices from OpenAI.</p>
+                    <a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Visit Resource</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-2);">🔒</div>
+                    <h3 class="card-title">Prompt Injection Prevention</h3>
+                    <p class="card-description">Security best practices for protecting against prompt injection attacks.</p>
+                    <a href="https://owasp.org/www-community/attacks/Prompt_Injection" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Learn More</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-3);">⚙️</div>
+                    <h3 class="card-title">Structured Outputs Guide</h3>
+                    <p class="card-description">Technical reference for generating consistent, parseable outputs.</p>
+                    <a href="https://platform.openai.com/docs/guides/structured-outputs" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Read Guide</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-4);">📊</div>
+                    <h3 class="card-title">Chain-of-Thought Research</h3>
+                    <p class="card-description">Academic papers on advanced reasoning techniques.</p>
+                    <a href="https://arxiv.org/abs/2201.11903" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">View Paper</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-5);">🏢</div>
+                    <h3 class="card-title">Amex AI Guidelines</h3>
+                    <p class="card-description">Internal guidelines for responsible AI usage at American Express.</p>
+                    <button class="btn btn-secondary" style="margin-top: var(--space-16);">Internal Access Required</button>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background-color: var(--color-bg-6);">📚</div>
+                    <h3 class="card-title">Prompt Engineering Community</h3>
+                    <p class="card-description">Join discussions and share learnings with fellow practitioners.</p>
+                    <a href="https://www.promptingguide.ai/" target="_blank" class="btn btn-primary" style="margin-top: var(--space-16);">Join Community</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop">↑</button>
+
+</body>
+</html>
