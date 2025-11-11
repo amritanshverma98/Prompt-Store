@@ -1,6 +1,7 @@
 /* =========================================================================
    Prompt Store - script.js
    Reads ./prompt_store_content.xlsx and renders all sections dynamically.
+   Also: loads display-only Community Custom GPTs from ./data/custom_gpts.xlsx
    ========================================================================= */
 
 /* ------------------------------ Config ---------------------------------- */
@@ -8,6 +9,9 @@
 // Always resolves to docs/prompt_store_content.xlsx relative to index.html,
 // and works on GitHub Pages subpaths.
 const EXCEL_URL = new URL('prompt_store_content.xlsx', document.baseURI).href;
+
+// NEW: default source for Community Custom GPTs
+const CUSTOM_GPTS_URL = new URL('custom_gpts.xlsx', document.baseURI).href;
 
 /* ------------------------------ State ----------------------------------- */
 
@@ -21,11 +25,16 @@ let faqs = [];
 let currentSection = 'home';
 let searchIndex = [];
 
+// NEW: Custom GPTs state (display-only)
+let customGPTs = [];
+let gptSelectedTags = new Set();
+let gptQuery = "";
+
 /* -------------------------- Utilities / Loader --------------------------- */
 
 function parsePipe(str) {
   return (str || '')
-    .split('|')
+    .split(/[|,]/) // support both pipe and comma
     .map(s => s.trim())
     .filter(Boolean);
 }
@@ -46,6 +55,12 @@ function sheetJson(wb, name) {
   const sh = wb.Sheets?.[name];
   if (!sh) return [];
   return XLSX.utils.sheet_to_json(sh, { defval: '' });
+}
+
+function firstSheetJson(wb) {
+  const first = wb.SheetNames?.[0];
+  if (!first) return [];
+  return sheetJson(wb, first);
 }
 
 function buildTheory(modRows, secRows) {
@@ -189,6 +204,56 @@ function showUploadBanner() {
   });
 }
 
+/* ---------------------- Community Custom GPTs Loader --------------------- */
+
+// Try common sheet names, fall back to first sheet
+function getCustomGPTRows(wb) {
+  const candidates = ['CustomGPTs', 'GPTs', 'custom_gpts', 'Sheet1'];
+  for (const name of candidates) {
+    const rows = sheetJson(wb, name);
+    if (rows.length) return rows;
+  }
+  return firstSheetJson(wb);
+}
+
+// Normalize rows with flexible column names.
+function normalizeCustomGPTRow(r) {
+  const title = r.title || r.Title || r.name || r.Name || r['GPT Title'] || '';
+  const description = r.description || r.Description || r.summary || r.Summary || '';
+  const author = r.author || r.Author || r.created_by || r.Publisher || '';
+  const url = r.url || r.URL || r.link || r.Link || r.href || '';
+  const emoji = r.icon || r.Icon || r.emoji || r.Emoji || '';
+  const tags = parsePipe(r.tags || r.Tags || r.category || r.Category || '');
+  const updated = r.updated_at || r.updated || r.Updated || r['Last Updated'] || '';
+  const visibility = r.visibility || r.Visibility || 'public';
+
+  return { title, description, author, url, emoji, tags, updated, visibility };
+}
+
+async function loadCustomGPTsFromUrl(url) {
+  const errEl = document.getElementById('gpt-error');
+  if (errEl) { errEl.hidden = true; errEl.textContent = ''; }
+
+  try {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed to fetch ${url}`);
+    const buf = await res.arrayBuffer();
+    const wb = XLSX.read(buf, { type: 'array' });
+    const raw = getCustomGPTRows(wb);
+    customGPTs = raw.map(normalizeCustomGPTRow).filter(x => x.title);
+    afterCustomGPTsLoaded();
+  } catch (e) {
+    console.warn(e);
+    if (errEl) {
+      errEl.hidden = false;
+      errEl.textContent = `Could not load Custom GPTs from "${url}". Use "Upload .xlsx" to load locally.`;
+    }
+    // keep UI usable; users can upload their own file
+    customGPTs = [];
+    afterCustomGPTsLoaded();
+  }
+}
+
 /* --------------------------- Navigation / UI ----------------------------- */
 
 function initializeNavigation() {
@@ -287,6 +352,22 @@ function buildSearchIndex() {
       category: 'FAQ',
       section: 'faq',
       keywords: [faq.q.toLowerCase(), faq.a.toLowerCase()]
+    });
+  });
+
+  // NEW: Include Custom GPTs in global search
+  customGPTs.forEach(g => {
+    searchIndex.push({
+      title: g.title,
+      description: g.description,
+      category: 'Custom GPT',
+      section: 'community-gpts',
+      keywords: [
+        g.title.toLowerCase(),
+        (g.description || '').toLowerCase(),
+        (g.author || '').toLowerCase(),
+        ...(g.tags || []).map(t => t.toLowerCase())
+      ]
     });
   });
 }
@@ -599,6 +680,126 @@ function renderFAQSection() {
   `).join('');
 }
 
+/* ---------------------- Community Custom GPTs UI ------------------------- */
+
+function uniqueSortedTags(items) {
+  const map = new Map(); // tag -> count
+  items.forEach(it => (it.tags || []).forEach(t => {
+    const k = t.trim();
+    if (!k) return;
+    map.set(k, (map.get(k) || 0) + 1);
+  }));
+  return Array.from(map.entries()).sort((a,b) => a[0].localeCompare(b[0]));
+}
+
+function renderGPTTags() {
+  const tagsEl = document.getElementById('gpt-tags');
+  if (!tagsEl) return;
+  const tags = uniqueSortedTags(customGPTs);
+
+  tagsEl.innerHTML = tags.map(([tag, count]) => `
+    <button class="tag ${gptSelectedTags.has(tag) ? 'active' : ''}" data-tag="${tag}" aria-pressed="${gptSelectedTags.has(tag)}">
+      #${tag} <span class="tag-count">${count}</span>
+    </button>
+  `).join('');
+
+  tagsEl.querySelectorAll('.tag').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = btn.getAttribute('data-tag');
+      if (gptSelectedTags.has(t)) gptSelectedTags.delete(t);
+      else gptSelectedTags.add(t);
+      btn.classList.toggle('active');
+      btn.setAttribute('aria-pressed', btn.classList.contains('active'));
+      applyGPTFilters();
+    });
+  });
+}
+
+function renderGPTGrid(items = customGPTs) {
+  const grid = document.getElementById('gpt-grid');
+  const empty = document.getElementById('gpt-empty');
+  if (!grid || !empty) return;
+
+  if (!items.length) {
+    grid.innerHTML = '';
+    empty.hidden = false;
+    return;
+  }
+  empty.hidden = true;
+
+  grid.innerHTML = items.map(g => `
+    <article class="gpt-card" tabindex="0">
+      <div class="gpt-card-header">
+        <div class="gpt-icon">${g.emoji || '🤖'}</div>
+        <div class="gpt-title-wrap">
+          <h3 class="gpt-title">${g.title}</h3>
+          ${g.author ? `<div class="gpt-meta">by <span class="gpt-author">${g.author}</span>${g.updated ? ` • <span class="gpt-updated">${g.updated}</span>` : ''}</div>` : ''}
+        </div>
+      </div>
+      <p class="gpt-desc">${g.description || ''}</p>
+      ${(g.tags && g.tags.length) ? `<div class="gpt-tags">${g.tags.map(t => `<span class="gpt-tag">#${t}</span>`).join('')}</div>` : ''}
+      <div class="gpt-actions">
+        ${g.url ? `<a class="btn btn-primary" href="${g.url}" target="_blank" rel="noopener">Open</a>` : `<button class="btn btn-secondary" disabled>Link unavailable</button>`}
+      </div>
+    </article>
+  `).join('');
+}
+
+function applyGPTFilters() {
+  const q = gptQuery.toLowerCase().trim();
+  const hasTags = gptSelectedTags.size > 0;
+  const filtered = customGPTs.filter(g => {
+    const matchesQ = !q ||
+      (g.title && g.title.toLowerCase().includes(q)) ||
+      (g.description && g.description.toLowerCase().includes(q)) ||
+      (g.author && g.author.toLowerCase().includes(q)) ||
+      (g.tags || []).some(t => t.toLowerCase().includes(q));
+
+    const matchesTags = !hasTags ||
+      (g.tags || []).some(t => gptSelectedTags.has(t));
+
+    return matchesQ && matchesTags;
+  });
+
+  renderGPTGrid(filtered);
+}
+
+function initializeCustomGPTsUI() {
+  const input = document.getElementById('gpt-file-input');
+  const refresh = document.getElementById('gpt-refresh');
+  const search = document.getElementById('gpt-search');
+
+  if (search) {
+    search.addEventListener('input', (e) => {
+      gptQuery = e.target.value || '';
+      applyGPTFilters();
+    });
+  }
+
+  if (refresh) {
+    refresh.addEventListener('click', async () => {
+      await loadCustomGPTsFromUrl(CUSTOM_GPTS_URL);
+    });
+  }
+
+  if (input) {
+    input.addEventListener('change', (e) => {
+      const f = e.target.files?.[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const wb = XLSX.read(reader.result, { type: 'array' });
+        const raw = getCustomGPTRows(wb);
+        customGPTs = raw.map(normalizeCustomGPTRow).filter(x => x.title);
+        afterCustomGPTsLoaded();
+      };
+      reader.readAsArrayBuffer(f);
+      // reset input so selecting the same file later still triggers change
+      e.target.value = '';
+    });
+  }
+}
+
 /* -------------------------- Interactions / UX --------------------------- */
 
 function initializeAccordion() {
@@ -699,6 +900,7 @@ function setupBaseUIWithoutData() {
   initializeAccordion();
   initializeTabs();
   initializeFilters();
+  initializeCustomGPTsUI(); // NEW
 }
 
 function afterDataLoaded() {
@@ -714,18 +916,29 @@ function afterDataLoaded() {
   updateStats();
 }
 
+// NEW: after Custom GPTs loaded
+function afterCustomGPTsLoaded() {
+  renderGPTTags();
+  applyGPTFilters(); // renders grid
+  // update global search index to include GPTs
+  buildSearchIndex();
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   setupBaseUIWithoutData();
   try {
     await ensureXLSX();
     try {
-      // Load straight from docs/
+      // Load app content from docs/
       await loadExcelFromUrl(EXCEL_URL);
       afterDataLoaded();
     } catch {
       // If fetch is blocked (e.g., file://), let user upload the same Excel
       showUploadBanner();
     }
+
+    // Load Custom GPTs (display-only). If this fails, users can upload manually.
+    await loadCustomGPTsFromUrl(CUSTOM_GPTS_URL);
   } catch (e) {
     console.error(e);
     alert('Failed to load Excel parser. Please check your network.');

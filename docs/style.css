@@ -1,4 +1,3 @@
-
 :root {
 /* Primitive Color Tokens */
 --color-white: rgba(255, 255, 255, 1);
@@ -335,3 +334,43 @@ font-size: var(--font-size-base);
 .search-result-title { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-4); }
 .search-result-description { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 .search-result-category { font-size: var(--font-size-xs); color: var(--color-primary); margin-top: var(--space-4); }
+
+/* ================== Community Custom GPTs (NEW) ================== */
+
+.gpts-header { display: flex; flex-direction: column; gap: var(--space-16); margin-bottom: var(--space-24); }
+.controls { display: flex; flex-wrap: wrap; gap: var(--space-12); align-items: center; justify-content: space-between; }
+.search-wrap { flex: 1 1 320px; }
+#gpt-search { width: 100%; padding: var(--space-12) var(--space-16); font-size: var(--font-size-md); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); }
+.actions { display: flex; gap: var(--space-12); align-items: center; }
+
+.file-btn { display: inline-flex; align-items: center; gap: var(--space-8); padding: var(--space-10) var(--space-16); background: var(--color-secondary); color: var(--color-text); border-radius: var(--radius-base); cursor: pointer; border: 1px solid var(--color-border); user-select: none; }
+.file-btn input[type="file"] { display: none; }
+.file-btn:hover { background: var(--color-secondary-hover); }
+
+.tags { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.tag { padding: 6px 10px; background: var(--color-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-full); font-size: var(--font-size-sm); cursor: pointer; }
+.tag:hover { background: var(--color-secondary-hover); }
+.tag.active { background: var(--color-primary); color: var(--color-btn-primary-text); border-color: var(--color-primary); }
+.tag-count { opacity: 0.7; margin-left: 6px; }
+
+.gpt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-24); }
+.gpt-card { background: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-20); box-shadow: var(--shadow-sm); outline: none; }
+.gpt-card:focus { box-shadow: var(--shadow-lg); }
+
+.gpt-card-header { display: flex; align-items: center; gap: var(--space-12); margin-bottom: var(--space-8); }
+.gpt-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--color-bg-8); border-radius: var(--radius-md); }
+.gpt-title-wrap { display: flex; flex-direction: column; gap: 2px; }
+.gpt-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-text); }
+.gpt-meta { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+.gpt-author { font-weight: var(--font-weight-medium); }
+.gpt-updated { opacity: 0.8; }
+
+.gpt-desc { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: var(--space-8) 0 var(--space-12); line-height: 1.5; }
+.gpt-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--space-12); }
+.gpt-tag { font-size: var(--font-size-xs); padding: 4px 8px; background: var(--color-secondary); border-radius: var(--radius-full); color: var(--color-text-secondary); }
+
+.gpt-actions { display: flex; gap: var(--space-8); }
+
+/* Empty & Error */
+.empty-state, .error-state { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-20); margin-top: var(--space-16); }
+.error-state { border-color: var(--color-error); color: var(--color-error); }
